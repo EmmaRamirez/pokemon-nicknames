@@ -1,0 +1,59 @@
+@require 'partials/*'
+
+body
+  background: #FFF;
+  color: near-black;
+  font-family: 'Open Sans', sans-serif;
+
+main
+  margin: 0 auto;
+  max-width: 95rem;
+
+a
+  color: near-black;
+  text-decoration: none;
+  &:hover
+    color: theme-color;
+
+.app-header
+  background: theme-color;
+  color: near-white;
+  .app-header-inner
+    margin: 0 auto;
+    max-width: 60rem;
+    padding: .5rem;
+    h1, a
+      display: inline-block;
+    h1
+      font-weight: normal;
+    a
+      background: near-white;
+      border: 1px solid near-white;
+      border-radius: 4px;
+      color: near-black;
+      padding: .5rem;
+      &:nth-of-type(1)
+        margin-left: 5rem;
+      &:hover
+        color: theme-color;
+
+.app-footer
+  margin: 0 auto;
+  max-width: 60rem;
+  padding: 5rem;
+  .app-loader
+    border: 2px solid near-white;
+    border-radius: 4px;
+    box-shadow: 0 0 .5rem near-white;
+    color: near-black;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    max-width: 20rem;
+    padding: .75rem;
+    position: relative;
+    text-align: center;
+    transition: 500ms all;
+    &:hover
+      background: near-white;
+      cursor: pointer;
+      transition: 500ms all;
