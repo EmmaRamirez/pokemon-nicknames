@@ -22,7 +22,9 @@ class PokemonComponent extends React.Component<PokemonComponentProps, {}> {
 
   render() {
     return (
-      <div></div>
+      <div>
+        ~ data ~
+      </div>
     );
   }
 }
