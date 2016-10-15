@@ -1,0 +1,10 @@
+{
+  "globalDependencies": {
+    "localforage": "registry:dt/localforage#0.0.0+20161010103158",
+    "react": "registry:dt/react#0.14.0+20161008064207",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "react-router": "registry:dt/react-router#2.0.0+20160928130202",
+    "storejs": "registry:dt/storejs#0.0.0+20160316155526",
+    "underscore": "registry:dt/underscore#1.8.3+20160908111004"
+  }
+}
