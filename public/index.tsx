@@ -1,17 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 import Pokemon from './interfaces/Pokemon';
 import Nickname from './interfaces/Nickname';
 import Root from './components/Root';
 import PokemonNickname from './components/PokemonNickname';
+import Favorites from './components/Favorites';
 
 require('./styles/global.styl');
 require('./styles/pokemon-nickname.styl');
 require('./styles/filter.styl');
 
 let mountNode = document.getElementById('mountNode');
-const limit = 120;
+const limit = 60;
 
 
 
@@ -19,12 +20,18 @@ function renderPage(data) {
   const RootWrapper = () => {
     return <Root data={data} />
   }
+  const Routes = () => {
+    return (
+      <Router history={browserHistory}>
+        <Route path="/" component={RootWrapper}>
+          <Route path="favorites" component={Favorites} />
+          <Route path="home" component={RootWrapper} />
+        </Route>
+      </Router>
+    );
+  }
   ReactDOM.render(
-    <Router history={browserHistory}>
-      <Route path="/" component={RootWrapper}>
-
-      </Route>
-    </Router>,
+    <Routes />,
     mountNode
   );
 }
@@ -33,6 +40,14 @@ function getPokemonData():void {
   let xhr = new XMLHttpRequest();
   let PokemonByNickname = [];
   xhr.open('GET', 'http://localhost:3000/api/pokemon');
+  xhr.addEventListener('progress', function (e:any) {
+    if (e.lengthComputable) {
+      let percent = (e.loaded / e.total) * 100;
+      let progress:any = document.getElementById('progress');
+      progress.value = percent;
+      console.log(progress.value);
+    }
+  }, false);
   xhr.onload = function() {
     if (xhr.status === 200) {
       let Pokemon = JSON.parse(xhr.responseText);

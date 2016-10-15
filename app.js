@@ -34,19 +34,7 @@ router.use(function(req, res, next) {
   next();
 });
 
-app.get('/:pokemon_species', function(req, res) {
-  res.send(req.params);
-  console.log(req.params.pokemon_species);
-});
 
-app.get('/submit-nickname', function (req, res) {
-  console.log('Submit Nickname accessed');
-
-});
-
-app.get('/info', function (req, res) {
-  console.log('Info accessed');
-});
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
