@@ -10,13 +10,25 @@ interface RootProps {
   limit: number;
 }
 
+interface RootState {
+  limit: number;
+}
 
-class Root extends React.Component<RootProps, {}> {
+class Root extends React.Component<RootProps, RootState> {
   constructor(props) {
     super(props);
+    this.state = {
+      limit: 30
+    }
+  }
+  _loadMore() {
+    console.log('Event fired');
+    this.setState({
+      limit: this.state.limit + 30
+    });
   }
   render() {
-    let limit = this.props.limit;
+    let limit = this.state.limit;
     let pokemonComponents = this.props.data.map(function (item, index) {
       if (index < limit) {
         return <PokemonNickname
@@ -30,7 +42,7 @@ class Root extends React.Component<RootProps, {}> {
       <div>
         <Filter />
         {pokemonComponents}
-        <Footer />
+        <Footer onClick={() => { this._loadMore() }} />
       </div>
     );
   }
