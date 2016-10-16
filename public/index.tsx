@@ -40,14 +40,6 @@ function getPokemonData():void {
   let xhr = new XMLHttpRequest();
   let PokemonByNickname = [];
   xhr.open('GET', 'http://localhost:3000/api/pokemon');
-  xhr.addEventListener('progress', function (e:any) {
-    if (e.lengthComputable) {
-      let percent = (e.loaded / e.total) * 100;
-      let progress:any = document.getElementById('progress');
-      progress.value = percent;
-      console.log(progress.value);
-    }
-  }, false);
   xhr.onload = function() {
     if (xhr.status === 200) {
       let Pokemon = JSON.parse(xhr.responseText);
