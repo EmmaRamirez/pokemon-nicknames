@@ -1,16 +1,10 @@
-// server.js
-
-// BASE SETUP
-// =============================================================================
-
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://emmaramirez:boltaway9!@ds057386.mlab.com:57386/pokemon-nicknames'); // connect to our database
+mongoose.connect('mongodb://emmaramirez:boltaway9!@ds057386.mlab.com:57386/pokemon-nicknames');
 
 var Pokemon = require('./models/pokemon');
 
-// call the packages we need
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
+var express    = require('express');
+var app        = express();
 var bodyParser = require('body-parser');
 
 // configure app to use bodyParser()
@@ -26,6 +20,10 @@ var router = express.Router();
 // get an instance of the express Router
 
 app.use(express.static('public'));
+
+app.get('/favorites', function (req, res, next) {
+  express.static('favorites.html');
+});
 
 router.use(function(req, res, next) {
   console.log('Something is happening.');
