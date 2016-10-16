@@ -42,12 +42,6 @@ class Filter extends React.Component<{}, FilterState> {
             {sortListItems}
           </ul>
         </div>
-        <div className='select-wrapper'>
-          <span># of Results per Page</span>
-          <div className='results-per-page-wrapper'>
-            <input onChange={ () => { } } type='text' defaultValue='30' />
-          </div>
-        </div>
       </div>
     )
   }
