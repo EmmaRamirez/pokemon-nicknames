@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import PokemonNickname from './PokemonNickname';
 import Filter from './Filter';
-
+import Footer from './Footer';
 
 interface RootProps {
   data: any[];
@@ -26,6 +26,7 @@ class Root extends React.Component<RootProps, {}> {
       <div>
         <Filter />
         {pokemonComponents}
+        <Footer />
       </div>
     );
   }
