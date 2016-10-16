@@ -6,7 +6,11 @@ import Pokemon from '../interfaces/Pokemon';
 import Nickname from '../interfaces/Nickname';
 import Notification from './Notification';
 
-class Footer extends React.Component<{}, {}> {
+interface FooterProps {
+  onClick: () => void;
+}
+
+class Footer extends React.Component<FooterProps, {}> {
   constructor(props) {
     super(props);
   }
@@ -14,7 +18,7 @@ class Footer extends React.Component<{}, {}> {
   render() {
     return (
       <footer className='app-footer'>
-        <div className='app-loader'>
+        <div onClick={this.props.onClick} className='app-loader'>
           <i className='fa fa-refresh'></i> Load More
         </div>
       </footer>
