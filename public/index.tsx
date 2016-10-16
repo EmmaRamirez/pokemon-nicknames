@@ -12,7 +12,7 @@ require('./styles/pokemon-nickname.styl');
 require('./styles/filter.styl');
 
 let mountNode = document.getElementById('mountNode');
-const limit = 600;
+const limit = 60;
 
 
 
