@@ -21,7 +21,9 @@ var baseRouter = express.Router();
 
 app.use(express.static('public'));
 
-
+var capitalize = function (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 apiRouter.use(function(req, res, next) {
@@ -70,7 +72,7 @@ apiRouter.route('/pokemon/:pokemon_id')
 
 apiRouter.route('/pokemon/:pokemon_species')
   .get(function(req, res) {
-    Pokemon.find({ 'species': req.params.pokemon_species }, function(err, pokemon) {
+    Pokemon.find({ 'species': capitalize(req.params.pokemon_species) }, function(err, pokemon) {
       if (err) res.send(err);
       res.json(pokemon);
     });

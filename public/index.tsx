@@ -18,7 +18,7 @@ const limit = 60;
 
 function renderPage(data) {
   const RootWrapper = () => {
-    return <Root data={data} />
+    return <Root data={data} limit={30} />
   }
   const Routes = () => {
     return (
@@ -51,31 +51,23 @@ function getPokemonData():void {
       for (let i = 0; i < Pokemon.length; i++) {
         if (Pokemon[i].nicknames.length > 0) {
           for (let j = 0; j < Pokemon[i].nicknames.length; j++) {
-            if (PokemonByNickname.length < limit) {
-              PokemonByNickname.push({
-                pokemon: Pokemon[i],
-                nickname: Pokemon[i].nicknames[j]
-              });
-            } else {
-              break;
-            }
-          }
-        } else {
-          if (PokemonByNickname.length < limit) {
             PokemonByNickname.push({
               pokemon: Pokemon[i],
-              nickname: {
-                name: "No Nicknames Yet",
-                description: "This Pokémon has not yet recieved any nicknames. Maybe you could be the first?",
-                upvotes: 0,
-                downvotes: 0,
-                tags: ["Needs Nickname"],
-                isRealNickname: false,
-              }
+              nickname: Pokemon[i].nicknames[j]
             });
-          } else {
-            break;
           }
+        } else {
+          PokemonByNickname.push({
+            pokemon: Pokemon[i],
+            nickname: {
+              name: "No Nicknames Yet",
+              description: "This Pokémon has not yet recieved any nicknames. Maybe you could be the first?",
+              upvotes: 0,
+              downvotes: 0,
+              tags: ["Needs Nickname"],
+              isRealNickname: false,
+            }
+          });
         }
       }
       renderPage(PokemonByNickname);
