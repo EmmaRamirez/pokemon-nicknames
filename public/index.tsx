@@ -20,11 +20,17 @@ function renderPage(data) {
   const RootWrapper = () => {
     return <Root data={data} limit={30} />
   }
+  const FavoritesWrapper = () => {
+    return (
+      <Favorites data={data} />
+    )
+  }
   const Routes = () => {
     return (
       <Router history={browserHistory}>
-        <Route path="/" component={RootWrapper}>
-          <Route path="favorites" component={Favorites} />
+        <Route path="/">
+          <IndexRoute component={RootWrapper} />
+          <Route path="favorites" component={FavoritesWrapper} />
           <Route path="home" component={RootWrapper} />
         </Route>
       </Router>
