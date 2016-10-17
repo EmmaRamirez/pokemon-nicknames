@@ -37,6 +37,7 @@ console.log(favorites);
 interface PokemonNicknameProps {
   pokemon: Pokemon;
   nickname: Nickname;
+  id: number;
   addToFavorites?: () => void;
 }
 
@@ -64,7 +65,7 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
     this.handleDownvote = this.handleDownvote.bind(this);
     this.state = {
       favorite: false,
-      image: '../img/xy-animated/' + this.props.pokemon.id + '.gif',
+      image: '../img/xy-animated/' + this.props.id + '.gif',
       upvotes: this.props.nickname.upvotes,
       downvotes: this.props.nickname.downvotes
     }
@@ -112,6 +113,12 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      image: '../img/xy-animated/' + this.props.id + '.gif'
+    })
+  }
+
   componentWillMount() {
     for (let i = 0; i < favorites.length; i++) {
       if (favorites[i].species === this.props.pokemon.species && favorites[i].nickname === this.props.nickname.name) {
@@ -156,8 +163,20 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
         </div>
       </div>);
     }
+    let nicknameData =  ( <div className='nickname-data data-component'>
+          <h3 className='nickname-data-header'>
+            <a href={'/nickname/' + dasherize(this.props.nickname.name)}>
+              {this.props.nickname.name}
+            </a>
+          </h3>
+          <p>{this.props.nickname.description === null ? 'No description provided.' : this.props.nickname.description}</p>
+          <div className='nickname-tags'>
+            {tags}
+          </div>
+        </div>);
+
     return (
-      <div className='pokemon-nickname'>
+      <div className='pokemon-nickname' data-id={this.props.id}>
         { voteData }
         <div className='pokemon-data data-component'>
           <h3 className='pokemon-data-header'>
@@ -168,28 +187,18 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
           <div className='pokemon-image-container'>
             <img onMouseOver={ () => {
               this.setState({
-                image: '../img/xy-animated-shiny/' + this.props.pokemon.id + '.gif'
+                image: '../img/xy-animated-shiny/' + this.props.id + '.gif'
               })
             }}
             onMouseOut={ () => {
               this.setState({
-                image: '../img/xy-animated/' + this.props.pokemon.id + '.gif'
+                image: '../img/xy-animated/' + this.props.id + '.gif'
               })
             }}
             src={this.state.image} />
           </div>
         </div>
-        <div className='nickname-data data-component'>
-          <h3 className='nickname-data-header'>
-            <a href={'/nickname/' + dasherize(this.props.nickname.name)}>
-              {this.props.nickname.name}
-            </a>
-          </h3>
-          <p>{this.props.nickname.description === null ? 'No description provided.' : this.props.nickname.description}</p>
-          <div className='nickname-tags'>
-            {tags}
-          </div>
-        </div>
+        { nicknameData }
       </div>
     )
   }
