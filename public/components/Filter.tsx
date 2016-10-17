@@ -15,11 +15,15 @@ const sortSelections = [
   }
 ];
 
+interface FilterProps {
+  onInput: (event) => void;
+}
+
 interface FilterState {
   sortSelections
 }
 
-class Filter extends React.Component<{}, FilterState> {
+class Filter extends React.Component<FilterProps, FilterState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +39,7 @@ class Filter extends React.Component<{}, FilterState> {
     });
     return (
       <div className='filter'>
-        <input className='filter-input' type='text' placeholder='filter...' />
+        <input onInput={this.props.onInput} className='filter-input' type='text' placeholder='filter...' />
         <div className='select-wrapper'>
           <span>Sort by</span>
           <ul className='select'>
