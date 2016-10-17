@@ -50,11 +50,28 @@ class Favorites extends React.Component<FavoritesProps, FavoritesState> {
 
     let favorites = this.state.favorites;
 
+    console.log('favorites:', favorites);
 
 
-    let data = this.props.data.filter((val) => {
-      return val.pokemon.species === "Pikachu";
-    })
+    let data = [];
+    let mutableData = this.props.data;
+    function createNewPokemonArray ()  {
+      let result = [];
+      let foundItem;
+      for (let i = 0; i < favorites.length; i++) {
+        foundItem = mutableData.find((val) => {
+          return val.pokemon.species === favorites[i].species && val.nickname.name === favorites[i].nickname;
+        });
+        typeof foundItem !== 'undefined'
+        ? result.push(foundItem)
+        : '';
+
+      }
+      return result;
+    }
+    data = createNewPokemonArray();
+
+    console.log('data:', data);
 
     let renderFavorites = data.map((item, index) => {
         return <PokemonNickname
@@ -66,7 +83,7 @@ class Favorites extends React.Component<FavoritesProps, FavoritesState> {
       }
     );
 
-    console.log(renderFavorites);
+    console.log('renderFavorites:', renderFavorites);
 
 
     // let renderFavorites = () => {
