@@ -3,6 +3,8 @@
 var webpack = require('webpack');
 var path = require('path');
 
+var WebpackNotifierPlugin = require('webpack-notifier');
+
 process.env.NODE_ENV = "dev";
 
 module.exports = {
@@ -15,7 +17,8 @@ module.exports = {
     extensions: ['', '.ts', '.tsx', '.jsx', '.js']
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new WebpackNotifierPlugin({ excludeWarnings: true })
   ],
   module: {
     loaders: [
