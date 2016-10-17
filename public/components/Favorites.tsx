@@ -8,11 +8,47 @@ import Notification from './Notification';
 import * as localforage from 'localforage';
 import PokemonNickname from './PokemonNickname';
 
-class Favorites extends React.Component<{}, {}> {
+let favorites = [];
+
+if (favorites = []) {
+  localforage.getItem('favorites').then(function (value) {
+    favorites = value;
+    console.log(localforage.getItem('favorites'));
+  }).catch(function (err) {
+    favorites = [];
+    localforage.setItem('favorites', favorites);
+    console.log(localforage.getItem('favorites'));
+  });
+}
+
+interface FavoritesProps {
+  data: Pokemon[];
+}
+
+interface FavoritesState {
+  favorites: any[];
+}
+
+class Favorites extends React.Component<FavoritesProps, FavoritesState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      favorites
+    }
+  }
   render() {
+    let renderFavorites = () => {
+      this.props.data.map((index, item) => {
+        return (
+          <div>Favorite</div>
+        )
+      })
+    };
     return (
       <div className='favorites-wrapper'>
-        <h3>Favorites</h3>
+        <div class='favorite-pokemon'>
+
+        </div>
       </div>
     )
   }
