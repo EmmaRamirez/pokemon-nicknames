@@ -6,6 +6,7 @@ import Nickname from './interfaces/Nickname';
 import Root from './components/Root';
 import PokemonNickname from './components/PokemonNickname';
 import Favorites from './components/Favorites';
+import Header from './components/Header';
 
 require('./styles/global.styl');
 require('./styles/pokemon-nickname.styl');
@@ -22,7 +23,10 @@ function renderPage(data) {
   }
   const FavoritesWrapper = () => {
     return (
-      <Favorites data={data} />
+      <span>
+        <Header />
+        <Favorites data={data} />
+      </span>
     )
   }
   const Routes = () => {

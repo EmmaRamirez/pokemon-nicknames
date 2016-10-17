@@ -37,7 +37,7 @@ console.log(favorites);
 interface PokemonNicknameProps {
   pokemon: Pokemon;
   nickname: Nickname;
-  id: number;
+  id: string;
   addToFavorites?: () => void;
 }
 
