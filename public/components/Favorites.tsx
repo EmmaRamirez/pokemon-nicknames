@@ -8,7 +8,7 @@ import Notification from './Notification';
 import * as localforage from 'localforage';
 import PokemonNickname from './PokemonNickname';
 
-let favorites = [];
+let favorites:FavoriteInterface[] = [];
 
 if (favorites = []) {
   localforage.getItem('favorites').then(function (value) {
@@ -21,12 +21,22 @@ if (favorites = []) {
   });
 }
 
+interface DataModel {
+  pokemon: Pokemon;
+  nickname: Nickname;
+}
+
 interface FavoritesProps {
-  data: Pokemon[];
+  data: DataModel[];
+}
+
+interface FavoriteInterface {
+  species: string;
+  nickname: string;
 }
 
 interface FavoritesState {
-  favorites: any[];
+  favorites: FavoriteInterface[];
 }
 
 class Favorites extends React.Component<FavoritesProps, FavoritesState> {
@@ -37,17 +47,45 @@ class Favorites extends React.Component<FavoritesProps, FavoritesState> {
     }
   }
   render() {
-    let renderFavorites = () => {
-      this.props.data.map((index, item) => {
-        return (
-          <div>Favorite</div>
-        )
-      })
-    };
+
+    let favorites = this.state.favorites;
+
+
+
+    let data = this.props.data.filter((val) => {
+      return val.pokemon.species === "Pikachu";
+    })
+
+    let renderFavorites = data.map((item, index) => {
+        return <PokemonNickname
+                 pokemon={item.pokemon}
+                 nickname={item.nickname}
+                 id={item.pokemon.id}
+                 key={index}
+                />
+      }
+    );
+
+    console.log(renderFavorites);
+
+
+    // let renderFavorites = () => {
+    //   let fav = this.state.favorites;
+    //   this.props.data.map((item, index) => {
+    //         return <PokemonNickname
+    //                 pokemon={item.pokemon}
+    //                 nickname={item.nickname}
+    //                 id={item.pokemon.id}
+    //                 key={index}
+    //                />
+    //
+    //     }).filter(filterByFavorites(item));
+    // }
+
     return (
       <div className='favorites-wrapper'>
-        <div class='favorite-pokemon'>
-
+        <div className='favorite-pokemon'>
+          { renderFavorites }
         </div>
       </div>
     )
