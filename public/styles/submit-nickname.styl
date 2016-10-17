@@ -1,0 +1,60 @@
+@require 'partials/*';
+
+.submit-nickname-wrapper
+  h2
+    margin: 1rem 0;
+    padding: .25rem;
+    text-align: center;
+
+.submit-nickname-form
+  background: white;
+  border: 1px solid near-white;
+  box-shadow: 0 0 .5rem near-white;
+  border-radius: 4px;
+  color: near-black;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 50%;
+  min-width: 360px;
+  input, textarea, select
+    border: 1px solid near-white;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    padding: .5rem;
+  label, span
+    padding: .25rem;
+    vertical-align: top;
+  span
+    display: inline-block;
+    padding-right: .5rem;
+    text-align: right;
+    width: 10rem;
+  label
+    display: block;
+  textarea
+    height: 8rem;
+    padding: 1rem;
+    width: 70%;
+
+.submit-nickname-form .tiny-text
+  width: 100%;
+  font-size: .8rem;
+  text-align: center;
+
+.submit-button
+  background: near-white;
+  cursor: pointer;
+  display: block;
+  font-size: 1.5rem;
+  margin: 1rem;
+  margin-left: 25%;
+  padding: 2rem;
+  text-transform: uppercase;
+  transition: 500ms all;
+  &:hover
+    background: darken(near-white, 25%);
+    transition: 500ms all;
+
+
+label
+  margin: .25rem;
