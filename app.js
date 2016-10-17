@@ -57,6 +57,7 @@ app.post('/submit-nickname', function (req, res) {
       tags: req.body.tags === '' ? [] : req.body.tags.split(','),
       upvotes: 0,
       downvotes: 0,
+      dateAdded: Date.now()
     });
     pokemon.save(function (err) {
       if (err) res.send(err);

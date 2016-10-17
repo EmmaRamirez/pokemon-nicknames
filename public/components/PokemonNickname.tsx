@@ -65,7 +65,8 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
     this.handleDownvote = this.handleDownvote.bind(this);
     this.state = {
       favorite: false,
-      image: '../img/xy-animated/' + this.props.id + '.gif',
+      //image: '../img/xy-animated/' + this.props.id + '.gif',
+      image: 'http://serebii.net/pokedex-xy/icon/' + this.props.id + '.png',
       upvotes: this.props.nickname.upvotes,
       downvotes: this.props.nickname.downvotes
     }
@@ -115,7 +116,8 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      image: '../img/xy-animated/' + this.props.id + '.gif'
+      //image: '../img/xy-animated/' + this.props.id + '.gif'
+      image: 'http://serebii.net/pokedex-xy/icon/' + this.props.id + '.png',
     })
   }
 
@@ -187,16 +189,20 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
           <div className='pokemon-image-container'>
             <img onMouseOver={ () => {
               this.setState({
-                image: '../img/xy-animated-shiny/' + this.props.id + '.gif'
+                //image: '../img/xy-animated-shiny/' + this.props.id + '.gif'
               })
             }}
             onMouseOut={ () => {
               this.setState({
-                image: '../img/xy-animated/' + this.props.id + '.gif'
+                //image: '../img/xy-animated/' + this.props.id + '.gif'
               })
             }}
             src={this.state.image} />
+
           </div>
+          <a href={'/pokemon/' + this.props.pokemon.species.toLowerCase()} >
+            <button className='more'>+ 4 more nicknames</button>
+          </a>
         </div>
         { nicknameData }
       </div>
