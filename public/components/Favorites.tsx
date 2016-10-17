@@ -8,6 +8,8 @@ import Notification from './Notification';
 import * as localforage from 'localforage';
 import PokemonNickname from './PokemonNickname';
 
+require('../styles/favorites.styl');
+
 let favorites:FavoriteInterface[] = [];
 
 if (favorites = []) {
@@ -101,6 +103,7 @@ class Favorites extends React.Component<FavoritesProps, FavoritesState> {
 
     return (
       <div className='favorites-wrapper'>
+        <h2>Favorites</h2>
         <div className='favorite-pokemon'>
           { renderFavorites }
         </div>
