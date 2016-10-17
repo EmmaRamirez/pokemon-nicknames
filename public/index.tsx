@@ -7,14 +7,14 @@ import Root from './components/Root';
 import PokemonNickname from './components/PokemonNickname';
 import Favorites from './components/Favorites';
 import Header from './components/Header';
+import SubmitNickname from './components/SubmitNickname';
+import PokemonComponent from './components/Pokemon';
 
 require('./styles/global.styl');
 require('./styles/pokemon-nickname.styl');
 require('./styles/filter.styl');
 
 let mountNode = document.getElementById('mountNode');
-const limit = 60;
-
 
 
 function renderPage(data) {
@@ -29,13 +29,34 @@ function renderPage(data) {
       </span>
     )
   }
+  const SubmitNicknameWrapper = () => {
+    return (
+      <span>
+        <Header />
+        <SubmitNickname />
+      </span>
+    )
+  }
+  const PokemonWrapper = () => {
+    return (
+      <span>
+        <Header />
+        <PokemonComponent data={data} />
+      </span>
+    )
+  }
   const Routes = () => {
     return (
       <Router history={browserHistory}>
         <Route path="/">
           <IndexRoute component={RootWrapper} />
-          <Route path="favorites" component={FavoritesWrapper} />
           <Route path="home" component={RootWrapper} />
+          <Route path="favorites" component={FavoritesWrapper} />
+          <Route path="submit-nickname" component={SubmitNicknameWrapper} />
+          {/*
+            <Route path='/:species' component={ PokemonWrapper } />
+          */}
+          <Route path='*' component={RootWrapper} />
         </Route>
       </Router>
     );
