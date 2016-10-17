@@ -53,9 +53,6 @@ function renderPage(data) {
           <Route path="home" component={RootWrapper} />
           <Route path="favorites" component={FavoritesWrapper} />
           <Route path="submit-nickname" component={SubmitNicknameWrapper} />
-          {/*
-            <Route path='/:species' component={ PokemonWrapper } />
-          */}
           <Route path='*' component={RootWrapper} />
         </Route>
       </Router>

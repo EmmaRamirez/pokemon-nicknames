@@ -37,12 +37,12 @@ var capitalize = function (string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-app.get('/:species', function (req, res) {
-  console.log(req.params.species);
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write("<!DOCTYPE html> <html lang='en'> <head> <title>Pokemon Nicknames for " + capitalize(req.params.species) + " | Browse, Favorite, and Contribute Pokemon Nicknames</title> <meta name='viewport' content='width=device-width, initial-scale=1.0'> <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'> <link href='../styles/normalize.css' rel='stylesheet'> </head> <body> <main> <div id='mountNode'> <h3 style='padding: 10vw; text-align:center; width: 100%; height: 100%'>Loading...<br></h3> </div> </main> <script src='https://use.fontawesome.com/504eae363c.js'></script> <script src='../bundle.js'></script> </body> </html>")
-  res.send();
-});
+// app.get('/:species', function (req, res) {
+//   console.log(req.params.species);
+//   res.writeHead(200, { 'Content-Type': 'text/html' });
+//   res.write("<!DOCTYPE html> <html lang='en'> <head> <title>Pokemon Nicknames for " + capitalize(req.params.species) + " | Browse, Favorite, and Contribute Pokemon Nicknames</title> <meta name='viewport' content='width=device-width, initial-scale=1.0'> <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'> <link href='../styles/normalize.css' rel='stylesheet'> </head> <body> <main> <div id='mountNode'> <h3 style='padding: 10vw; text-align:center; width: 100%; height: 100%'>Loading...<br></h3> </div> </main> <script src='https://use.fontawesome.com/504eae363c.js'></script> <script src='../bundle.js'></script> </body> </html>")
+//   res.send();
+// });
 
 app.post('/submit-nickname', function (req, res) {
   console.log('Species' + req.body.species);
@@ -53,7 +53,7 @@ app.post('/submit-nickname', function (req, res) {
     if (err) res.send(err);
     pokemon.nicknames.push({
       name: req.body.nickname,
-      description: req.body.description,
+      description: req.body.description === '' ? 'No description provided.' : req.body.description,
       tags: req.body.tags === '' ? [] : req.body.tags.split(','),
       upvotes: 0,
       downvotes: 0,

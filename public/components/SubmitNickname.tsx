@@ -765,7 +765,7 @@ class SubmitNickname extends React.Component<{}, SubmitNicknameState> {
           </label>
           <label htmlFor='description'>
             <span>Description: </span>
-            <textarea required='required' onChange={ this.textAreaChange.bind(this) } name='description'></textarea><br/>
+            <textarea onChange={ this.textAreaChange.bind(this) } name='description'></textarea><br/>
             <span className='tiny-text'>{this.state.charactersRemaining} characters remaining</span>
           </label>
           <label htmlFor='tags'>
