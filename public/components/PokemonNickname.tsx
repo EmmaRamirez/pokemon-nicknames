@@ -35,19 +35,6 @@ function dasherize(string) {
 class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNicknameState> {
   constructor(props) {
     super(props);
-    let favorites = [];
-
-    if (favorites = []) {
-      localforage.getItem('favorites').then(function (value) {
-        favorites = value;
-        console.log(localforage.getItem('favorites'));
-      }).catch(function (err) {
-        favorites = [];
-        localforage.setItem('favorites', favorites);
-        console.log(localforage.getItem('favorites'));
-      });
-    }
-
     this.handleFavorite = this.handleFavorite.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.handleDownvote = this.handleDownvote.bind(this);
@@ -57,49 +44,48 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
       //image: 'http://serebii.net/pokedex-xy/icon/' + this.props.id + '.png',
       image: `http://serebii.net/xy/pokemon/${this.props.id}.png`,
       upvotes: this.props.nickname.upvotes,
-      downvotes: this.props.nickname.downvotes,
-      favorites: favorites
+      downvotes: this.props.nickname.downvotes
     }
   }
 
   saveFavorites() {
-    localforage.setItem('favorites', this.state.favorites).then(function (value) {
-      console.log(value);
-    }).catch(function (err) {
-      console.log(err);
-    })
+    // localforage.setItem('favorites', this.state.favorites).then(function (value) {
+    //   console.log(value);
+    // }).catch(function (err) {
+    //   console.log(err);
+    // })
   }
 
   handleFavorite(species, nickname) {
-    if (this.state.favorite) {
-      this.setState({
-        favorite: false
-      });
-      let filteredFavorites = this.state.favorites.filter(function (fav) {
-        return fav.species !== species && fav.nickname !== nickname;
-      });
-      this.setState({
-        favorites: filteredFavorites
-      })
-      console.log(this.state.favorites);
-      this.saveFavorites();
-    } else {
-      let item:any = [{
-        species,
-        nickname
-      }];
-      let newFavorites = this.state.favorites.concat(item);
-      this.setState({
-        favorites: newFavorites
-      });
-
-      this.setState({
-        favorite: true
-      });
-
-      console.log(this.state.favorites);
-      this.saveFavorites();
-    }
+    // if (this.state.favorite) {
+    //   this.setState({
+    //     favorite: false
+    //   });
+    //   let filteredFavorites = this.state.favorites.filter(function (fav) {
+    //     return fav.species !== species && fav.nickname !== nickname;
+    //   });
+    //   this.setState({
+    //     favorites: filteredFavorites
+    //   })
+    //   console.log(this.state.favorites);
+    //   this.saveFavorites();
+    // } else {
+    //   let item:any = [{
+    //     species,
+    //     nickname
+    //   }];
+    //   let newFavorites = this.state.favorites.concat(item);
+    //   this.setState({
+    //     favorites: newFavorites
+    //   });
+    //
+    //   this.setState({
+    //     favorite: true
+    //   });
+    //
+    //   console.log(this.state.favorites);
+    //   this.saveFavorites();
+    // }
   }
 
   handleUpvote() {
@@ -120,14 +106,14 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
   }
 
   componentWillMount() {
-    console.log(this.state.favorites);
-    for (let i = 0; i < this.state.favorites.length; i++) {
-      if (this.state.favorites[i].species === this.props.pokemon.species && this.state.favorites[i].nickname === this.props.nickname.name) {
-        this.setState({
-          favorite: true
-        });
-      }
-    }
+    // console.log(this.state.favorites);
+    // for (let i = 0; i < this.state.favorites.length; i++) {
+    //   if (this.state.favorites[i].species === this.props.pokemon.species && this.state.favorites[i].nickname === this.props.nickname.name) {
+    //     this.setState({
+    //       favorite: true
+    //     });
+    //   }
+    // }
   }
 
   render():React.ReactElement<{}> {
@@ -150,7 +136,7 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
           <div className='votes-total'>
             {this.state.upvotes - this.state.downvotes}
           </div>
-          <div className='favorite-trigger' data-favorite={this.state.favorite} onClick={() => {
+          <div style={{ display: 'none' }} className='favorite-trigger' data-favorite={this.state.favorite} onClick={() => {
             this.handleFavorite(this.props.pokemon.species, this.props.nickname.name);
           }}>
             <i className='fa fa-star' title='Add to Favorites'></i>
