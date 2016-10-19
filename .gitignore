@@ -4,7 +4,7 @@ logs
 npm-debug.log*
 
 bundle.js
-bunlde.js.map
+bundle.js.map
 
 # Runtime data
 pids
