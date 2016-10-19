@@ -29,8 +29,7 @@ class Root extends React.Component<RootProps, RootState> {
     }
   }
   _loadMore() {
-    console.log('Event fired');
-    this.handleSort = this.handleSort.bind(this);
+    console.log('Event fired with limit of ' + this.state.limit);
     this.setState({
       limit: this.state.limit + 30,
       pokemonComponents: this.getPokemonComponents()
@@ -38,7 +37,7 @@ class Root extends React.Component<RootProps, RootState> {
   }
   componentWillMount() {
     this.setState({
-      pokemonComponents: this.getPokemonComponents()
+      pokemonComponents: this.getPokemonComponents(this.state.data)
     })
   }
   handleSort(event) {
@@ -87,14 +86,18 @@ class Root extends React.Component<RootProps, RootState> {
     });
   }
 
-  getPokemonComponents() {
+  getPokemonComponents(data = this.props.data) {
     let limit = this.state.limit;
-    let pokemonComponents = this.props.data.map(function (item, index) {
+    let pokemonComponents = data.map(function (item, index) {
       if (index < limit) {
+        let n = item.pokemon.id;
+        if (item.pokemon.id < 100) {
+          n = Number(item.pokemon.id).toString()
+        }
         return <PokemonNickname
                 pokemon={item.pokemon}
                 nickname={item.nickname}
-                image={`http://serebii.net/xy/pokemon/${item.pokemon.id}.png`}
+                image={`../img/sprites/${n}.png`}
                 key={index}
                />
       }
@@ -110,6 +113,9 @@ class Root extends React.Component<RootProps, RootState> {
       console.log(filteredData);
       this.setState({
         data: filteredData
+      })
+      this.setState({
+        pokemonComponents: event.target.value !== '' ? this.getPokemonComponents(this.state.data) : this.getPokemonComponents()
       })
     };
     return (

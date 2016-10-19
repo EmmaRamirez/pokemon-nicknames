@@ -102,7 +102,7 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('Image updated to: ' + nextProps.image);
+    
   }
 
   componentWillMount() {
@@ -136,7 +136,7 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
           <div className='votes-total'>
             {this.state.upvotes - this.state.downvotes}
           </div>
-          <div style={{ display: 'none' }} className='favorite-trigger' data-favorite={this.state.favorite} onClick={() => {
+          <div className='favorite-trigger' data-favorite={this.state.favorite} onClick={() => {
             this.handleFavorite(this.props.pokemon.species, this.props.nickname.name);
           }}>
             <i className='fa fa-star' title='Add to Favorites'></i>
