@@ -12,14 +12,16 @@ interface VoteDataProps {
 }
 
 interface VoteDataState {
-  upvotes: number;
-  downvotes: number;
-  favorite: boolean;
+  upvotes?: number;
+  downvotes?: number;
+  favorite?: boolean;
 }
 
 class VoteData extends React.Component<VoteDataProps, VoteDataState> {
   constructor(props) {
     super(props);
+    this.handleUpvote = this.handleUpvote.bind(this);
+    this.handleDownvote = this.handleDownvote.bind(this);
     this.state = {
       upvotes: this.props.nickname.upvotes,
       downvotes: this.props.nickname.downvotes,
@@ -27,10 +29,14 @@ class VoteData extends React.Component<VoteDataProps, VoteDataState> {
     }
   }
   handleUpvote() {
-
+    this.setState({
+      upvotes: this.state.upvotes + 1
+    })
   }
   handleDownvote() {
-
+    this.setState({
+      downvotes: this.state.downvotes + 1
+    })
   }
   handleFavorite(species, nickname) {
 
@@ -62,3 +68,5 @@ class VoteData extends React.Component<VoteDataProps, VoteDataState> {
     </div>);
   }
 }
+
+export default VoteData;

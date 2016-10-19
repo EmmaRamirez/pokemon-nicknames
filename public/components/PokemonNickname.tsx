@@ -4,6 +4,8 @@ import * as ReactDOM from 'react-dom';
 import * as _ from 'underscore';
 import Pokemon from '../interfaces/Pokemon';
 import Nickname from '../interfaces/Nickname';
+import VoteData from './VoteData';
+import NicknameData from './NicknameData';
 //import Notification from './Notification';
 import * as localforage from 'localforage';
 
@@ -12,15 +14,13 @@ interface PokemonNicknameProps {
   nickname: Nickname;
   id?: string;
   addToFavorites?: () => void;
+  expandPokemon?: () => void;
   image?: string;
 }
 
 interface PokemonNicknameState {
   favorite?: boolean;
   image?: string;
-  upvotes?: number;
-  downvotes?: number;
-  favorites?: any[];
 }
 
 function dasherize(string) {
@@ -35,16 +35,12 @@ function dasherize(string) {
 class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNicknameState> {
   constructor(props) {
     super(props);
-    this.handleFavorite = this.handleFavorite.bind(this);
-    this.handleUpvote = this.handleUpvote.bind(this);
-    this.handleDownvote = this.handleDownvote.bind(this);
+
     this.state = {
       favorite: false,
       //image: '../img/xy-animated/' + this.props.id + '.gif',
       //image: 'http://serebii.net/pokedex-xy/icon/' + this.props.id + '.png',
-      image: `http://serebii.net/xy/pokemon/${this.props.id}.png`,
-      upvotes: this.props.nickname.upvotes,
-      downvotes: this.props.nickname.downvotes
+      image: `http://serebii.net/xy/pokemon/${this.props.id}.png`
     }
   }
 
@@ -88,21 +84,10 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
     // }
   }
 
-  handleUpvote() {
-    console.log('le upboat');
-    this.setState({
-      upvotes: this.state.upvotes + 1
-    })
-  }
 
-  handleDownvote() {
-    this.setState({
-      downvotes: this.state.downvotes + 1
-    })
-  }
 
   componentWillReceiveProps(nextProps) {
-    
+
   }
 
   componentWillMount() {
@@ -125,42 +110,8 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
       });
     }
     if (this.props.nickname.isRealNickname || typeof this.props.nickname.isRealNickname === 'undefined') {
-      voteData = (<div className='vote-data data-component'>
-        <div onClick={() => {
-          this.handleUpvote();
-        }} className='upvote-arrow'>
-          <i className='fa fa-arrow-up'></i>
-        </div>
-        <div className='upvotes'>{this.state.upvotes}</div>
-        <div className='favorites-wrapper'>
-          <div className='votes-total'>
-            {this.state.upvotes - this.state.downvotes}
-          </div>
-          <div className='favorite-trigger' data-favorite={this.state.favorite} onClick={() => {
-            this.handleFavorite(this.props.pokemon.species, this.props.nickname.name);
-          }}>
-            <i className='fa fa-star' title='Add to Favorites'></i>
-          </div>
-        </div>
-        <div  className='downvotes'>{this.state.downvotes}</div>
-        <div onClick={() => {
-          this.handleDownvote();
-        }} className='downvote-arrow'>
-          <i className='fa fa-arrow-down'></i>
-        </div>
-      </div>);
+      voteData = <VoteData pokemon={this.props.pokemon} nickname={this.props.nickname} />
     }
-    let nicknameData =  ( <div className='nickname-data data-component'>
-          <h3 className='nickname-data-header'>
-            <a href={'/nickname/' + dasherize(this.props.nickname.name)}>
-              {this.props.nickname.name}
-            </a>
-          </h3>
-          <p>{this.props.nickname.description === null ? 'No description provided.' : this.props.nickname.description}</p>
-          <div className='nickname-tags'>
-            {tags}
-          </div>
-        </div>);
 
     return (
       <div className='pokemon-nickname' data-id={this.props.id}>
@@ -172,24 +123,13 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
             </a>
           </h3>
           <div className='pokemon-image-container'>
-            <img onMouseOver={ () => {
-              this.setState({
-                //image: '../img/xy-animated-shiny/' + this.props.id + '.gif'
-              })
-            }}
-            onMouseOut={ () => {
-              this.setState({
-                //image: '../img/xy-animated/' + this.props.id + '.gif'
-              })
-            }}
-            src={this.props.image} />
-
+            <img src={this.props.image} />
           </div>
-          <a href={'/pokemon/' + this.props.pokemon.species.toLowerCase()} >
+          <a onClick={ this.props.expandPokemon } href={'/#' + this.props.pokemon.species.toLowerCase()} >
             { typeof this.props.nickname.isRealNickname === 'undefined' && this.props.pokemon.nicknames.length > 1 ? <button className='more'>+ {this.props.pokemon.nicknames.length - 1} more { this.props.pokemon.nicknames.length - 1 > 1 ? 'nicknames' : 'nickname' }</button> : '' }
           </a>
         </div>
-        { nicknameData }
+        <NicknameData nickname={this.props.nickname} />
       </div>
     )
   }
