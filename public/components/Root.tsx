@@ -12,7 +12,6 @@ interface RootProps {
   limit: number;
 }
 
-
 interface RootState {
   limit?: number;
   data?: any[];
@@ -22,6 +21,7 @@ interface RootState {
 class Root extends React.Component<RootProps, RootState> {
   constructor(props) {
     super(props);
+    this.expandPokemon = this.expandPokemon.bind(this);
     this.state = {
       limit: 30,
       data: this.props.data,
@@ -54,6 +54,11 @@ class Root extends React.Component<RootProps, RootState> {
       case 'number-sort-desc':
         this.sort('number-sort-desc');
         break;
+      case 'nickname-num-sort-asc':
+        this.sort('nickname-num-sort-asc');
+        break;
+      case 'nickname-num-sort-desc':
+        this.sort('nickname-num-sort-desc');
       default:
         break;
     }
@@ -78,6 +83,12 @@ class Root extends React.Component<RootProps, RootState> {
       if (type === 'number-sort-desc') {
         return Number(b.pokemon.id) - Number(a.pokemon.id);
       }
+      if (type === 'nickname-num-sort-asc') {
+        return b.pokemon.nicknames.length - a.pokemon.nicknames.length;
+      }
+      if (type === 'nickname-num-sort-desc') {
+        return a.pokemon.nicknames.length - b.pokemon.nicknames.length;
+      }
 
     })
     this.setState({
@@ -86,8 +97,13 @@ class Root extends React.Component<RootProps, RootState> {
     });
   }
 
+  expandPokemon(species) {
+    console.log(species);
+  }
+
   getPokemonComponents(data = this.props.data) {
     let limit = this.state.limit;
+    function expandPokemon(species) { this.expandPokemon(species) };
     let pokemonComponents = data.map(function (item, index) {
       if (index < limit) {
         let n = item.pokemon.id;
@@ -99,6 +115,7 @@ class Root extends React.Component<RootProps, RootState> {
                 nickname={item.nickname}
                 image={`../img/sprites/${n}.png`}
                 key={index}
+                expandPokemon={ () => { this.expandPokemon(item.pokemon.species) } }
                />
       }
     });

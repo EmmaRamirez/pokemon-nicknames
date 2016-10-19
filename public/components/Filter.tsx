@@ -13,7 +13,7 @@ const sortSelections = [
     name: "Pokemon # (Descending)",
     icon: "fa fa-sort-num-desc",
     value: "number-sort-desc",
-    selected: true
+    selected: false
   },
   {
     name: "Pokemon Name (Ascending)",
@@ -26,6 +26,14 @@ const sortSelections = [
     icon: "fa fa-sort-alpha-desc",
     value: "name-sort-desc",
     selected: false
+  },
+  {
+    name: "Number of Nicknames (Ascending)",
+    value: "nickname-num-sort-asc",
+  },
+  {
+    name: "Number of Nicknames (Descending)",
+    value: "nickname-num-sort-desc",
   }
 ];
 
