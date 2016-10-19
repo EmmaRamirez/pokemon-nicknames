@@ -81,12 +81,13 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
       this.setState({
         favorites: filteredFavorites
       })
+      console.log(this.state.favorites);
       this.saveFavorites();
     } else {
-      let item:any = {
+      let item:any = [{
         species,
         nickname
-      }
+      }];
       let newFavorites = this.state.favorites.concat(item);
       this.setState({
         favorites: newFavorites
@@ -96,10 +97,9 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
         favorite: true
       });
 
-
+      console.log(this.state.favorites);
       this.saveFavorites();
     }
-    console.log(this.state.favorites);
   }
 
   handleUpvote() {
