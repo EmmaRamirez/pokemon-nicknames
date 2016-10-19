@@ -15,6 +15,7 @@ interface RootProps {
 interface RootState {
   limit?: number;
   data?: any[];
+  focusPokemon?: string;
   pokemonComponents?: any
 }
 
@@ -25,7 +26,8 @@ class Root extends React.Component<RootProps, RootState> {
     this.state = {
       limit: 30,
       data: this.props.data,
-      pokemonComponents: null
+      focusPokemon: null,
+      pokemonComponents: null,
     }
   }
   _loadMore() {
@@ -38,6 +40,11 @@ class Root extends React.Component<RootProps, RootState> {
   componentWillMount() {
     this.setState({
       pokemonComponents: this.getPokemonComponents(this.state.data)
+    })
+  }
+  componentDidMount() {
+    this.setState({
+      limit: 60
     })
   }
   handleSort(event) {
@@ -98,12 +105,16 @@ class Root extends React.Component<RootProps, RootState> {
   }
 
   expandPokemon(species) {
-    console.log(species);
+    this.setState({
+      focusPokemon: species
+    })
   }
 
   getPokemonComponents(data = this.props.data) {
     let limit = this.state.limit;
-    function expandPokemon(species) { this.expandPokemon(species) };
+    let expandPokemon = (species) => {
+      this.expandPokemon(species);
+    }
     let pokemonComponents = data.map(function (item, index) {
       if (index < limit) {
         let n = item.pokemon.id;
@@ -115,13 +126,18 @@ class Root extends React.Component<RootProps, RootState> {
                 nickname={item.nickname}
                 image={`../img/sprites/${n}.png`}
                 key={index}
-                expandPokemon={ () => { this.expandPokemon(item.pokemon.species) } }
+                expandPokemon={ () => { expandPokemon(item.pokemon.species) } }
                />
       }
     });
     return pokemonComponents;
   }
   render() {
+    let focusPokemon = () => {
+      if (this.state.focusPokemon !== null) {
+        return <h1>{this.state.focusPokemon}</h1>
+      }
+    }
     let filter = (event) => {
       console.log(event.target.value);
       let filteredData = this.props.data.filter((item) => {
@@ -139,6 +155,7 @@ class Root extends React.Component<RootProps, RootState> {
       <div>
         <Header />
         <Filter onInput={(event) => { filter(event) }} onChange={(event) => { this.handleSort(event) }}/>
+        {focusPokemon}
         {this.state.pokemonComponents}
         <Footer onClick={() => { this._loadMore() }} />
       </div>
