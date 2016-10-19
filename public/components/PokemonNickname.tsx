@@ -37,8 +37,9 @@ console.log(favorites);
 interface PokemonNicknameProps {
   pokemon: Pokemon;
   nickname: Nickname;
-  id: string;
+  id?: string;
   addToFavorites?: () => void;
+  image: string;
 }
 
 interface PokemonNicknameState {
@@ -66,7 +67,8 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
     this.state = {
       favorite: false,
       //image: '../img/xy-animated/' + this.props.id + '.gif',
-      image: 'http://serebii.net/pokedex-xy/icon/' + this.props.id + '.png',
+      //image: 'http://serebii.net/pokedex-xy/icon/' + this.props.id + '.png',
+      image: `http://serebii.net/xy/pokemon/${this.props.id}.png`,
       upvotes: this.props.nickname.upvotes,
       downvotes: this.props.nickname.downvotes
     }
@@ -115,10 +117,7 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      //image: '../img/xy-animated/' + this.props.id + '.gif'
-      image: 'http://serebii.net/pokedex-xy/icon/' + this.props.id + '.png',
-    })
+    console.log('Image updated to: ' + nextProps.image);
   }
 
   componentWillMount() {
@@ -197,11 +196,11 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
                 //image: '../img/xy-animated/' + this.props.id + '.gif'
               })
             }}
-            src={this.state.image} />
+            src={this.props.image} />
 
           </div>
           <a href={'/pokemon/' + this.props.pokemon.species.toLowerCase()} >
-            <button className='more'>+ 4 more nicknames</button>
+            { typeof this.props.nickname.isRealNickname === 'undefined' && this.props.pokemon.nicknames.length > 1 ? <button className='more'>+ {this.props.pokemon.nicknames.length - 1} more { this.props.pokemon.nicknames.length - 1 > 1 ? 'nicknames' : 'nickname' }</button> : '' }
           </a>
         </div>
         { nicknameData }

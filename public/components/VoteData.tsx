@@ -14,6 +14,7 @@ interface VoteDataProps {
 interface VoteDataState {
   upvotes: number;
   downvotes: number;
+  favorite: boolean;
 }
 
 class VoteData extends React.Component<VoteDataProps, VoteDataState> {
@@ -21,10 +22,17 @@ class VoteData extends React.Component<VoteDataProps, VoteDataState> {
     super(props);
     this.state = {
       upvotes: this.props.nickname.upvotes,
-      downvotes: this.props.nickname.downvotes
+      downvotes: this.props.nickname.downvotes,
+      favorite: false
     }
   }
   handleUpvote() {
+
+  }
+  handleDownvote() {
+
+  }
+  handleFavorite(species, nickname) {
 
   }
   render() {

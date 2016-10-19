@@ -12,9 +12,11 @@ interface RootProps {
   limit: number;
 }
 
+
 interface RootState {
   limit?: number;
   data?: any[];
+  pokemonComponents?: any
 }
 
 class Root extends React.Component<RootProps, RootState> {
@@ -22,30 +24,85 @@ class Root extends React.Component<RootProps, RootState> {
     super(props);
     this.state = {
       limit: 30,
-      data: this.props.data
+      data: this.props.data,
+      pokemonComponents: null
     }
   }
   _loadMore() {
     console.log('Event fired');
+    this.handleSort = this.handleSort.bind(this);
     this.setState({
-      limit: this.state.limit + 30
+      limit: this.state.limit + 30,
+      pokemonComponents: this.getPokemonComponents()
     });
   }
-  componenetWillMount() {
-
+  componentWillMount() {
+    this.setState({
+      pokemonComponents: this.getPokemonComponents()
+    })
   }
-  render() {
+  handleSort(event) {
+    alert(event.target.value);
+    switch (event.target.value) {
+      case 'name-sort-desc':
+        this.sort('name-sort-desc');
+        break;
+      case 'name-sort-asc':
+        this.sort('name-sort-asc');
+        break;
+      case 'number-sort-asc':
+        this.sort('number-sort-asc');
+        break;
+      case 'number-sort-desc':
+        this.sort('number-sort-desc');
+        break;
+      default:
+        break;
+    }
+  }
+  sort(type) {
+    let sortedData = this.props.data.sort((a, b) => {
+      let nameA = a.pokemon.species;
+      let nameB = b.pokemon.species;
+      if (type === 'name-sort-desc') {
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      }
+      if (type === 'name-sort-asc') {
+        if (nameB < nameA) return -1;
+        if (nameB > nameA) return 1;
+        return 0;
+      }
+      if (type === 'number-sort-asc') {
+        return Number(a.pokemon.id) - Number(b.pokemon.id);
+      }
+      if (type === 'number-sort-desc') {
+        return Number(b.pokemon.id) - Number(a.pokemon.id);
+      }
+
+    })
+    this.setState({
+      data: sortedData,
+      pokemonComponents: this.getPokemonComponents()
+    });
+  }
+
+  getPokemonComponents() {
     let limit = this.state.limit;
-    let pokemonComponents = this.state.data.map(function (item, index) {
+    let pokemonComponents = this.props.data.map(function (item, index) {
       if (index < limit) {
         return <PokemonNickname
                 pokemon={item.pokemon}
                 nickname={item.nickname}
-                id={item.pokemon.id}
+                image={`http://serebii.net/xy/pokemon/${item.pokemon.id}.png`}
                 key={index}
                />
       }
     });
+    return pokemonComponents;
+  }
+  render() {
     let filter = (event) => {
       console.log(event.target.value);
       let filteredData = this.props.data.filter((item) => {
@@ -59,8 +116,8 @@ class Root extends React.Component<RootProps, RootState> {
     return (
       <div>
         <Header />
-        <Filter onInput={(event) => { filter(event) }} />
-        {pokemonComponents}
+        <Filter onInput={(event) => { filter(event) }} onChange={(event) => { this.handleSort(event) }}/>
+        {this.state.pokemonComponents}
         <Footer onClick={() => { this._loadMore() }} />
       </div>
     );

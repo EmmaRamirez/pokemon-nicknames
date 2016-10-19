@@ -78,12 +78,12 @@ function getPokemonData():void {
 
       for (let i = 0; i < Pokemon.length; i++) {
         if (Pokemon[i].nicknames.length > 0) {
-          for (let j = 0; j < Pokemon[i].nicknames.length; j++) {
+
             PokemonByNickname.push({
               pokemon: Pokemon[i],
-              nickname: Pokemon[i].nicknames[j]
+              nickname: Pokemon[i].nicknames[0]
             });
-          }
+
         } else {
           PokemonByNickname.push({
             pokemon: Pokemon[i],
