@@ -121,13 +121,13 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
 
   componentWillMount() {
     console.log(this.state.favorites);
-    // for (let i = 0; i < favorites.length; i++) {
-    //   if (favorites[i].species === this.props.pokemon.species && favorites[i].nickname === this.props.nickname.name) {
-    //     this.setState({
-    //       favorite: true
-    //     });
-    //   }
-    // }
+    for (let i = 0; i < this.state.favorites.length; i++) {
+      if (this.state.favorites[i].species === this.props.pokemon.species && this.state.favorites[i].nickname === this.props.nickname.name) {
+        this.setState({
+          favorite: true
+        });
+      }
+    }
   }
 
   render():React.ReactElement<{}> {
