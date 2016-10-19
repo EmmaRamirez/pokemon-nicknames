@@ -4,26 +4,8 @@ import * as ReactDOM from 'react-dom';
 import * as _ from 'underscore';
 import Pokemon from '../interfaces/Pokemon';
 import Nickname from '../interfaces/Nickname';
-import Notification from './Notification';
+//import Notification from './Notification';
 import * as localforage from 'localforage';
-
-
-
-//let favorites = [];
-
-
-
-// localforage.getItem('favorites').then(function (value) {
-//   favorites = value;
-//   console.log(localforage.getItem('favorites'));
-// }).catch(function (err) {
-//   favorites = [];
-//   localforage.setItem('favorites', favorites);
-//   console.log(localforage.getItem('favorites'));
-// });
-
-
-console.log(favorites);
 
 interface PokemonNicknameProps {
   pokemon: Pokemon;
