@@ -17,7 +17,9 @@ class Header extends React.Component<{}, {}> {
       <header className='app-header'>
         <div className='app-header-inner'>
           <h1><a href='/'><img height='24px' src='../img/pokeball.svg' /> Pokemon Nicknames</a></h1>
-          <a href='/favorites'>Favorites</a>
+          {/*
+            }<a href='/favorites'>Favorites</a>
+          */}
           <a href='/submit-nickname'>Submit Nickname</a>
           {/*
             <a href='/random'><i className='fa fa-random'></i> Random</a>
