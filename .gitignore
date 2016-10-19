@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+bundle.js
+bunlde.js.map
+
 # Runtime data
 pids
 *.pid
