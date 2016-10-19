@@ -19,8 +19,10 @@ class Header extends React.Component<{}, {}> {
           <h1><img height='24px' src='../img/pokeball.svg' /><a href='/'>Pokemon Nicknames</a></h1>
           <a href='/favorites'>Favorites</a>
           <a href='/submit-nickname'>Submit Nickname</a>
-          <a href='/random'><i className='fa fa-random'></i> Random</a>
-          <a href='/info'>Info</a>
+          {/*
+            <a href='/random'><i className='fa fa-random'></i> Random</a>
+            <a href='/info'>Info</a>
+          */}
         </div>
       </header>
     );
