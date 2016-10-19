@@ -42,7 +42,6 @@ class Root extends React.Component<RootProps, RootState> {
     })
   }
   handleSort(event) {
-    alert(event.target.value);
     switch (event.target.value) {
       case 'name-sort-desc':
         this.sort('name-sort-desc');
