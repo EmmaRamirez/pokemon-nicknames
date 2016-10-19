@@ -4,25 +4,25 @@ import * as ReactDOM from 'react-dom';
 
 const sortSelections = [
   {
-    name: "Pokemon #",
+    name: "Pokemon # (Ascending)",
     icon: "fa fa-sort-num-asc",
     value: "number-sort-asc",
     selected: true
   },
   {
-    name: "Pokemon #",
+    name: "Pokemon # (Descending)",
     icon: "fa fa-sort-num-desc",
     value: "number-sort-desc",
     selected: true
   },
   {
-    name: "Pokemon Name",
+    name: "Pokemon Name (Ascending)",
     icon: "fa fa-sort-alpha-asc",
     value: "name-sort-asc",
     selected: false
   },
   {
-    name: "Pokemon Name",
+    name: "Pokemon Name (Descending)",
     icon: "fa fa-sort-alpha-desc",
     value: "name-sort-desc",
     selected: false
@@ -45,12 +45,9 @@ class Filter extends React.Component<FilterProps, FilterState> {
       sortSelections: sortSelections
     }
   }
-  _handleSortSelection() {
-
-  }
   render() {
     let sortListItems = this.state.sortSelections.map(function (item, index) {
-      return <option onClick={() => { this._handleSortSelection() }} data-selected={item.selected} data-index={index} value={item.value} key={index}>{item.name} <i className={item.icon}></i></option>;
+      return <option onClick={() => { this._handleSortSelection() }} data-selected={item.selected} data-index={index} value={item.value} key={index}>{item.name}</option>;
     });
     return (
       <div className='filter'>
