@@ -23,9 +23,10 @@ class Footer extends React.Component<FooterProps, FooterState> {
   }
 
   iconSpin() {
+    let iconSpinStop = this.iconSpinStop();
     this.setState({
       icon: 'fa fa-refresh fa-spin'
-    })
+    });
   }
 
   iconSpinStop() {
@@ -36,15 +37,11 @@ class Footer extends React.Component<FooterProps, FooterState> {
 
   render() {
     let onClick = this.props.onClick;
-    let iconSpinStop = this.iconSpinStop();
+    //let iconSpinStop = this.iconSpinStop();
     return (
       <footer className='app-footer'>
         <div onClick={ () => {
-            this.iconSpin();
             onClick();
-            setTimeout(() => {
-              iconSpinStop
-            }, 1000);
           }
         } className='app-loader'>
           <i className={this.state.icon}></i> Load More
