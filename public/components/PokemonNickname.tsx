@@ -39,7 +39,7 @@ interface PokemonNicknameProps {
   nickname: Nickname;
   id?: string;
   addToFavorites?: () => void;
-  image: string;
+  image?: string;
 }
 
 interface PokemonNicknameState {
@@ -75,32 +75,32 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
   }
 
   saveFavorites() {
-    localforage.setItem('favorites', favorites).then(function (value) {
-      console.log(value);
-    }).catch(function (err) {
-      console.log(err);
-    })
+    // localforage.setItem('favorites', favorites).then(function (value) {
+    //   console.log(value);
+    // }).catch(function (err) {
+    //   console.log(err);
+    // })
   }
 
   handleFavorite(species, nickname) {
-    if (this.state.favorite) {
-      this.setState({
-        favorite: false
-      });
-      favorites = favorites.filter(function (fav) {
-        return fav.species !== species && fav.nickname !== nickname;
-      });
-      this.saveFavorites();
-    } else {
-      favorites.push({
-        species,
-        nickname
-      });
-      this.setState({
-        favorite: true
-      });
-      this.saveFavorites();
-    }
+    // if (this.state.favorite) {
+    //   this.setState({
+    //     favorite: false
+    //   });
+    //   favorites = favorites.filter(function (fav) {
+    //     return fav.species !== species && fav.nickname !== nickname;
+    //   });
+    //   this.saveFavorites();
+    // } else {
+    //   favorites.push({
+    //     species,
+    //     nickname
+    //   });
+    //   this.setState({
+    //     favorite: true
+    //   });
+    //   this.saveFavorites();
+    // }
   }
 
   handleUpvote() {
@@ -121,13 +121,14 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
   }
 
   componentWillMount() {
-    for (let i = 0; i < favorites.length; i++) {
-      if (favorites[i].species === this.props.pokemon.species && favorites[i].nickname === this.props.nickname.name) {
-        this.setState({
-          favorite: true
-        });
-      }
-    }
+    console.log(favorites);
+    // for (let i = 0; i < favorites.length; i++) {
+    //   if (favorites[i].species === this.props.pokemon.species && favorites[i].nickname === this.props.nickname.name) {
+    //     this.setState({
+    //       favorite: true
+    //     });
+    //   }
+    // }
   }
 
   render():React.ReactElement<{}> {
