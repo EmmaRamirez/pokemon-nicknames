@@ -63,32 +63,43 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
   }
 
   saveFavorites() {
-    // localforage.setItem('favorites', favorites).then(function (value) {
-    //   console.log(value);
-    // }).catch(function (err) {
-    //   console.log(err);
-    // })
+    localforage.setItem('favorites', this.state.favorites).then(function (value) {
+      console.log(value);
+    }).catch(function (err) {
+      console.log(err);
+    })
   }
 
   handleFavorite(species, nickname) {
-    // if (this.state.favorite) {
-    //   this.setState({
-    //     favorite: false
-    //   });
-    //   favorites = favorites.filter(function (fav) {
-    //     return fav.species !== species && fav.nickname !== nickname;
-    //   });
-    //   this.saveFavorites();
-    // } else {
-    //   favorites.push({
-    //     species,
-    //     nickname
-    //   });
-    //   this.setState({
-    //     favorite: true
-    //   });
-    //   this.saveFavorites();
-    // }
+    if (this.state.favorite) {
+      this.setState({
+        favorite: false
+      });
+      let filteredFavorites = this.state.favorites.filter(function (fav) {
+        return fav.species !== species && fav.nickname !== nickname;
+      });
+      this.setState({
+        favorites: filteredFavorites
+      })
+      this.saveFavorites();
+    } else {
+      let item:any = {
+        species,
+        nickname
+      }
+      let newFavorites = this.state.favorites.concat(item);
+      this.setState({
+        favorites: newFavorites
+      });
+
+      this.setState({
+        favorite: true
+      });
+
+
+      this.saveFavorites();
+    }
+    console.log(this.state.favorites);
   }
 
   handleUpvote() {
