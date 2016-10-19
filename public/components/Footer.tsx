@@ -10,16 +10,44 @@ interface FooterProps {
   onClick: () => void;
 }
 
-class Footer extends React.Component<FooterProps, {}> {
+interface FooterState {
+  icon?: string;
+}
+
+class Footer extends React.Component<FooterProps, FooterState> {
   constructor(props) {
     super(props);
+    this.state = {
+      icon: 'fa fa-refresh'
+    }
+  }
+
+  iconSpin() {
+    this.setState({
+      icon: 'fa fa-refresh fa-spin'
+    })
+  }
+
+  iconSpinStop() {
+    this.setState({
+      icon: 'fa fa-refresh'
+    })
   }
 
   render() {
+    let onClick = this.props.onClick;
+    let iconSpinStop = this.iconSpinStop();
     return (
       <footer className='app-footer'>
-        <div onClick={this.props.onClick} className='app-loader'>
-          <i className='fa fa-refresh'></i> Load More
+        <div onClick={ () => {
+            this.iconSpin();
+            onClick();
+            setTimeout(() => {
+              iconSpinStop
+            }, 1000);
+          }
+        } className='app-loader'>
+          <i className={this.state.icon}></i> Load More
         </div>
       </footer>
     );

@@ -4,19 +4,34 @@ import * as ReactDOM from 'react-dom';
 
 const sortSelections = [
   {
-    name: "Pokemon Name",
-    icon: "fa fa-sort-alpha-asc",
+    name: "Pokemon #",
+    icon: "fa fa-sort-num-asc",
+    value: "number-sort-asc",
+    selected: true
+  },
+  {
+    name: "Pokemon #",
+    icon: "fa fa-sort-num-desc",
+    value: "number-sort-desc",
     selected: true
   },
   {
     name: "Pokemon Name",
+    icon: "fa fa-sort-alpha-asc",
+    value: "name-sort-asc",
+    selected: false
+  },
+  {
+    name: "Pokemon Name",
     icon: "fa fa-sort-alpha-desc",
+    value: "name-sort-desc",
     selected: false
   }
 ];
 
 interface FilterProps {
   onInput: (event) => void;
+  onChange: (event) => void;
 }
 
 interface FilterState {
@@ -35,16 +50,16 @@ class Filter extends React.Component<FilterProps, FilterState> {
   }
   render() {
     let sortListItems = this.state.sortSelections.map(function (item, index) {
-      return <li onClick={() => { this._handleSortSelection() }} data-selected={item.selected} data-index={index} key={index}>{item.name} <i className={item.icon}></i></li>;
+      return <option onClick={() => { this._handleSortSelection() }} data-selected={item.selected} data-index={index} value={item.value} key={index}>{item.name} <i className={item.icon}></i></option>;
     });
     return (
       <div className='filter'>
-        <input onInput={this.props.onInput} className='filter-input' type='text' placeholder='filter...' />
+        <input onInput={this.props.onInput} className='filter-input' type='text' placeholder='search' />
         <div className='select-wrapper'>
           <span>Sort by</span>
-          <ul className='select'>
+          <select className='select' onChange={this.props.onChange}>
             {sortListItems}
-          </ul>
+          </select>
         </div>
       </div>
     )
