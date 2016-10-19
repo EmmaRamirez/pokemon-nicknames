@@ -67,7 +67,7 @@ function renderPage(data) {
 function getPokemonData():void {
   let xhr = new XMLHttpRequest();
   let PokemonByNickname = [];
-  xhr.open('GET', 'http://localhost:3000/api/pokemon');
+  xhr.open('GET', 'https://pokemon-nicknames.herokuapp.com/api/pokemon');
   xhr.onload = function() {
     if (xhr.status === 200) {
       let Pokemon = JSON.parse(xhr.responseText);
