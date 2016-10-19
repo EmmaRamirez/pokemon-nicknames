@@ -4,35 +4,35 @@ import * as ReactDOM from 'react-dom';
 
 const sortSelections = [
   {
-    name: "Pokemon # (Ascending)",
+    name: "Pokemon # ▴",
     icon: "fa fa-sort-num-asc",
     value: "number-sort-asc",
     selected: true
   },
   {
-    name: "Pokemon # (Descending)",
+    name: "Pokemon # ▾",
     icon: "fa fa-sort-num-desc",
     value: "number-sort-desc",
     selected: false
   },
   {
-    name: "Pokemon Name (Ascending)",
+    name: "Pokemon Name ▴",
     icon: "fa fa-sort-alpha-asc",
     value: "name-sort-asc",
     selected: false
   },
   {
-    name: "Pokemon Name (Descending)",
+    name: "Pokemon Name ▾",
     icon: "fa fa-sort-alpha-desc",
     value: "name-sort-desc",
     selected: false
   },
   {
-    name: "Number of Nicknames (Ascending)",
+    name: "Number of Nicknames ▴",
     value: "nickname-num-sort-asc",
   },
   {
-    name: "Number of Nicknames (Descending)",
+    name: "Number of Nicknames ▾",
     value: "nickname-num-sort-desc",
   }
 ];
