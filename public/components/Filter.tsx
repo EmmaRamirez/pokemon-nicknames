@@ -59,7 +59,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
     });
     return (
       <div className='filter'>
-        <input onInput={this.props.onInput} className='filter-input' type='text' placeholder='search' />
+        <input onChange={this.props.onInput} className='filter-input' type='text' placeholder='search' />
         <div className='select-wrapper'>
           <span>Sort by</span>
           <select className='select' onChange={this.props.onChange}>
