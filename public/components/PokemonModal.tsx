@@ -5,6 +5,7 @@ import * as _ from 'underscore';
 import Pokemon from '../interfaces/Pokemon';
 import Nickname from '../interfaces/Nickname';
 import NicknameData from './NicknameData';
+import VoteData from './VoteData';
 
 require('../styles/pokemon-modal.styl');
 
@@ -26,14 +27,19 @@ class PokemonModal extends React.Component<PokemonModalProps, PokemonModalState>
   }
 
 
-  getPokemonNicknames(nicks) {
+  getPokemonNicknames(pokemon, nicks) {
     let nicknames = nicks.sort((a, b) => {
       return a.name - b.name;
     });
     nicknames = nicks.map((item, index) => {
-      return <NicknameData nickname={item} key={index} />
+      return (
+              <div className='pokemon-modal-nickname-wrapper' key={index}>
+                <VoteData pokemon={pokemon} nickname={item} />
+                <NicknameData nickname={item} />
+              </div>
+            )
     });
-    return nicks !== [] ? nicknames : <p>This Pokémon has no nicknames yet.</p>;
+    return nicks.length > 0 ? nicknames : <p>This Pokémon has no nicknames yet.</p>;
   }
 
   render() {
@@ -72,7 +78,7 @@ class PokemonModal extends React.Component<PokemonModalProps, PokemonModalState>
             </div>
           </header>
           <div className='pokemon-modal-nicknames'>
-            {this.getPokemonNicknames(nicknames)}
+            {this.getPokemonNicknames(pokemon, nicknames)}
           </div>
         </div>
       </div>
