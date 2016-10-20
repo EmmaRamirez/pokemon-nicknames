@@ -1,0 +1,53 @@
+@require 'partials/*';
+
+.pokemon-modal
+  background: white;
+  border: 1px solid near-white;
+  border-radius: 4px;
+  height: 80%;
+  left: calc(50% - 25rem);
+  margin: 5em auto;
+  overflow: hidden;
+  padding: 2em;
+  position: absolute;
+  width: 50rem;
+  top: 0%;
+  z-index: 20;
+
+.pokemon-modal-inner
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+
+.pokemon-modal-nicknames::-webkit-scrollbar-track
+  -webkit-box-shadow: inset 0 0 6px near-white;
+  background-color: #F5F5F5;
+
+.pokemon-modal-nicknames::-webkit-scrollbar
+  width: 6px;
+  border-radius: 2px;
+  background-color: #F5F5F5;
+
+.pokemon-modal-nicknames::-webkit-scrollbar-thumb
+  background-color: darken(near-white, 20%);
+
+.pokemon-modal-close
+  cursor: pointer;
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 0;
+
+.pokemon-modal-links
+  border-bottom: 1px solid near-white;
+  padding-bottom: .25rem;
+  strong
+    display: inline-block;
+    margin-right: .5rem;
+
+.pokemon-modal-header
+  text-align: center;
+
+.pokemon-modal-nicknames
+  overflow-y: auto;

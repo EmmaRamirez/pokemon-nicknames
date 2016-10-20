@@ -6,6 +6,13 @@ import Pokemon from '../interfaces/Pokemon';
 import Header from './Header';
 import Filter from './Filter';
 import Footer from './Footer';
+import PokemonModal from './PokemonModal';
+import Overlay from './Overlay';
+
+let capitalize = function (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 
 interface RootProps {
   data: any[];
@@ -15,8 +22,9 @@ interface RootProps {
 interface RootState {
   limit?: number;
   data?: any[];
-  focusPokemon?: string;
-  pokemonComponents?: any
+  focusPokemon?: any;
+  pokemonComponents?: any;
+  overlayActive?: boolean;
 }
 
 class Root extends React.Component<RootProps, RootState> {
@@ -28,18 +36,25 @@ class Root extends React.Component<RootProps, RootState> {
       data: this.props.data,
       focusPokemon: null,
       pokemonComponents: null,
+      overlayActive: false,
     }
   }
   _loadMore() {
-    console.log('Event fired with limit of ' + this.state.limit);
     this.setState({
       limit: this.state.limit + 30,
       pokemonComponents: this.getPokemonComponents()
     });
   }
   componentWillMount() {
+    let pokemonHash = location.hash.replace(/\#/, '');
+    console.log(pokemonHash);
+    let pokemon = this.getPokemon(capitalize(pokemonHash));
+    console.log(pokemon);
+    let hashActive = location.hash !== '' ? true : false;
     this.setState({
-      pokemonComponents: this.getPokemonComponents(this.state.data)
+      pokemonComponents: this.getPokemonComponents(this.state.data),
+      overlayActive: hashActive,
+      focusPokemon: typeof pokemon !== 'undefined' ? pokemon : this.getPokemon('Ditto')
     })
   }
   componentDidMount() {
@@ -104,16 +119,23 @@ class Root extends React.Component<RootProps, RootState> {
     });
   }
 
-  expandPokemon(species) {
+  expandPokemon(pokemon) {
     this.setState({
-      focusPokemon: species
+      focusPokemon: pokemon,
+      overlayActive: true,
+    })
+  }
+
+  overlayClick() {
+    this.setState({
+      overlayActive: false
     })
   }
 
   getPokemonComponents(data = this.props.data) {
     let limit = this.state.limit;
-    let expandPokemon = (species) => {
-      this.expandPokemon(species);
+    let expandPokemon = (pokemon) => {
+      this.expandPokemon(pokemon);
     }
     let pokemonComponents = data.map(function (item, index) {
       if (index < limit) {
@@ -126,24 +148,24 @@ class Root extends React.Component<RootProps, RootState> {
                 nickname={item.nickname}
                 image={`../img/sprites/${n}.png`}
                 key={index}
-                expandPokemon={ () => { expandPokemon(item.pokemon.species) } }
+                expandPokemon={ () => { expandPokemon(item) } }
                />
       }
     });
     return pokemonComponents;
   }
+  getPokemon(species):Pokemon {
+    let result = this.props.data.find((val) => {
+      return val.pokemon.species === species;
+    });
+    return result;
+  }
   render() {
-    let focusPokemon = () => {
-      if (this.state.focusPokemon !== null) {
-        return <h1>{this.state.focusPokemon}</h1>
-      }
-    }
+
     let filter = (event) => {
-      console.log(event.target.value);
       let filteredData = this.props.data.filter((item) => {
         return -1 < item.pokemon.species.toLowerCase().indexOf(event.target.value.toLowerCase());
       });
-      console.log(filteredData);
       this.setState({
         data: filteredData
       })
@@ -153,9 +175,12 @@ class Root extends React.Component<RootProps, RootState> {
     };
     return (
       <div>
+        <Overlay active={this.state.overlayActive} overlayClick={
+          () => { this.overlayClick() }
+        } />
         <Header />
         <Filter onInput={(event) => { filter(event) }} onChange={(event) => { this.handleSort(event) }}/>
-        {focusPokemon}
+        <PokemonModal modalClick={() => { this.overlayClick() }} pokemon={this.state.focusPokemon} active={this.state.overlayActive} />
         {this.state.pokemonComponents}
         <Footer onClick={() => { this._loadMore() }} />
       </div>
