@@ -12,11 +12,22 @@
   margin: .25rem;
   overflow: hidden;
   transition: 300ms all;
-  width: 32.8%;;
+  width: 32%;;
   vertical-align: top;
   &:hover
     border: 1px solid grey;
     transition: 300ms all;
+  @media screen and (max-width: 1280px)
+    height: 9.5rem;
+  @media screen and (max-width: 1180px)
+    height: 12rem;
+  @media screen and (max-width: 960px)
+    height: 9rem;
+    width: 48%;
+  @media screen and (max-width: 900px)
+    height: 11rem;
+  @media screen and (max-width: 600px)
+    width: calc(100% - .5rem);
 
 .data-component
   align-self: center;
