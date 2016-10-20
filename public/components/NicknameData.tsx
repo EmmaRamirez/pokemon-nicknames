@@ -33,7 +33,7 @@ class NicknameData extends React.Component<NicknameDataProps, {}> {
         return <a key={index} href={'/tags/' + dasherize(tag)}>#{tag}</a>
       });
     }
-    return ( 
+    return (
       <div className='nickname-data data-component'>
         <h3 className='nickname-data-header'>
           <a href={'/nickname/' + dasherize(this.props.nickname.name)}>
