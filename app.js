@@ -54,7 +54,7 @@ app.post('/submit-nickname', function (req, res) {
     pokemon.nicknames.push({
       name: req.body.nickname,
       description: req.body.description === '' ? 'No description provided.' : req.body.description,
-      tags: req.body.tags === '' ? [] : req.body.tags.split(','),
+      tags: req.body.tags === '' ? [] : req.body.tags.replace(/\#/, '').split(','),
       upvotes: 0,
       downvotes: 0,
     });

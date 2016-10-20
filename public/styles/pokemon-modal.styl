@@ -9,10 +9,13 @@
   margin: 5em auto;
   overflow: hidden;
   padding: 2em;
-  position: absolute;
+  position: fixed;
   width: 50rem;
   top: 0%;
   z-index: 20;
+  @media screen and (max-width: 860px)
+    left: 1rem;
+    width: calc(100% - 2rem);
 
 .pokemon-modal-inner
   display: flex;
@@ -36,8 +39,8 @@
   cursor: pointer;
   font-size: 2rem;
   position: absolute;
-  right: 1rem;
-  top: 0;
+  right: -1rem;
+  top: -1.5rem;
 
 .pokemon-modal-nickname-wrapper
   border-bottom: 1px solid near-white;
