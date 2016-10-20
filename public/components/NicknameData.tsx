@@ -30,15 +30,13 @@ class NicknameData extends React.Component<NicknameDataProps, {}> {
     let tags;
     if (this.props.nickname.tags !== undefined) {
       tags = this.props.nickname.tags.map(function (tag, index) {
-        return <a key={index} href={'/tags/' + dasherize(tag)}>#{tag}</a>
+        return <span key={index}>#{tag}</span>
       });
     }
     return (
       <div className='nickname-data data-component'>
         <h3 className='nickname-data-header'>
-          <a href={'/nickname/' + dasherize(this.props.nickname.name)}>
-            {this.props.nickname.name}
-          </a>
+          {this.props.nickname.name}
         </h3>
         <p>{this.props.nickname.description === null ? 'No description provided.' : this.props.nickname.description}</p>
         <div className='nickname-tags'>
