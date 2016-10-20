@@ -761,7 +761,7 @@ class SubmitNickname extends React.Component<{}, SubmitNicknameState> {
           </label>
           <label htmlFor='nickname'>
             <span>Nickname: </span>
-            <input required='required' maxlength='12' type='text' name='nickname' defaultValue='' />
+            <input required='required' maxLength='12' type='text' name='nickname' defaultValue='' />
           </label>
           <label htmlFor='description'>
             <span>Description: </span>
