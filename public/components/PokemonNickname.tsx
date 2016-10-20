@@ -118,7 +118,7 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
         { voteData }
         <div className='pokemon-data data-component'>
           <h3 className='pokemon-data-header'>
-            <a href={'/pokemon/' + this.props.pokemon.species.toLowerCase()}>
+            <a href={'/#' + this.props.pokemon.species}>
               <span style={{ fontSize: '10px', color: 'grey' }}>#{this.props.pokemon.id}</span> {this.props.pokemon.species}
             </a>
           </h3>
