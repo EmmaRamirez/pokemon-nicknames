@@ -56,7 +56,7 @@ class PokemonModal extends React.Component<PokemonModalProps, PokemonModalState>
           <header className='pokemon-modal-header'>
             <h1>{pokemon.species}</h1>
             <div className='pokemon-modal-image'>
-              <img src={`http://serebii.net/xy/pokemon/${pokemon.id}.png`} />
+              <img alt={pokemon.species} src={`http://serebii.net/xy/pokemon/${pokemon.id}.png`} />
             </div>
             <div className='pokemon-modal-links'>
               <strong>Links</strong>

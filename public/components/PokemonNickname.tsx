@@ -123,7 +123,7 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
             </a>
           </h3>
           <div className='pokemon-image-container'>
-            <img src={this.props.image} />
+            <img alt={this.props.pokemon.species} src={this.props.image} />
           </div>
           <a onClick={ this.props.expandPokemon } href={'/#!' + this.props.pokemon.species.toLowerCase()} >
             { typeof this.props.nickname.isRealNickname === 'undefined' && this.props.pokemon.nicknames.length > 1 ? <button className='more'>+ {this.props.pokemon.nicknames.length - 1} more { this.props.pokemon.nicknames.length - 1 > 1 ? 'nicknames' : 'nickname' }</button> : '' }
