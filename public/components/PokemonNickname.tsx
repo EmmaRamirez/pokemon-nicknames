@@ -118,14 +118,14 @@ class PokemonNickname extends React.Component<PokemonNicknameProps, PokemonNickn
         { voteData }
         <div className='pokemon-data data-component'>
           <h3 className='pokemon-data-header'>
-            <a onClick={ this.props.expandPokemon} href={'/#' + this.props.pokemon.species}>
+            <a onClick={ this.props.expandPokemon} href={'/#!' + this.props.pokemon.species}>
               <span style={{ fontSize: '10px', color: 'grey' }}>#{this.props.pokemon.id}</span> {this.props.pokemon.species}
             </a>
           </h3>
           <div className='pokemon-image-container'>
             <img src={this.props.image} />
           </div>
-          <a onClick={ this.props.expandPokemon } href={'/#' + this.props.pokemon.species.toLowerCase()} >
+          <a onClick={ this.props.expandPokemon } href={'/#!' + this.props.pokemon.species.toLowerCase()} >
             { typeof this.props.nickname.isRealNickname === 'undefined' && this.props.pokemon.nicknames.length > 1 ? <button className='more'>+ {this.props.pokemon.nicknames.length - 1} more { this.props.pokemon.nicknames.length - 1 > 1 ? 'nicknames' : 'nickname' }</button> : '' }
           </a>
         </div>

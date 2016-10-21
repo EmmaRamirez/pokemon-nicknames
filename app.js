@@ -61,7 +61,7 @@ app.post('/submit-nickname', function (req, res) {
     pokemon.save(function (err) {
       if (err) res.send(err);
       res.writeHead(302, {
-        'Location': '/#' + req.body.species
+        'Location': '/#!' + req.body.species
       });
       res.end();
     });

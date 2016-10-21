@@ -46,7 +46,7 @@ class Root extends React.Component<RootProps, RootState> {
     });
   }
   componentWillMount() {
-    let pokemonHash = location.hash.replace(/\#/, '');
+    let pokemonHash = location.hash.replace(/\#!/, '');
     console.log(pokemonHash);
     let pokemon = this.getPokemon(capitalize(pokemonHash));
     console.log(pokemon);
