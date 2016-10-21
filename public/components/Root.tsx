@@ -134,7 +134,6 @@ class Root extends React.Component<RootProps, RootState> {
     this.setState({
       overlayActive: false
     });
-    window.scrollTo(10, 0);
   }
 
   getPokemonComponents(data = this.props.data) {
