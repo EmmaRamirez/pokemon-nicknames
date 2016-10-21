@@ -42,7 +42,7 @@ class SubmitNickname extends React.Component<{}, SubmitNicknameState> {
     this.state = {
       charactersRemaining: 200,
       submitActive: true,
-      speciesValue: 'Bulbasaur',
+      speciesValue: '',
     }
   }
 
