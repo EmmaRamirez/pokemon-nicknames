@@ -14,6 +14,8 @@ interface VoteDataState {
   upvotes?: number;
   downvotes?: number;
   favorite?: boolean;
+  downvoted?: boolean;
+  upvoted?: boolean;
 }
 
 class VoteData extends React.Component<VoteDataProps, VoteDataState> {
@@ -24,18 +26,51 @@ class VoteData extends React.Component<VoteDataProps, VoteDataState> {
     this.state = {
       upvotes: this.props.nickname.upvotes,
       downvotes: this.props.nickname.downvotes,
+      downvoted: false,
+      upvoted: false,
       favorite: false
     }
   }
+  handleVote(voteType) {
+    let pokemon = this.props.pokemon;
+    let nickname = this.props.nickname;
+    let vote = function () {
+      let xhr = new XMLHttpRequest();
+
+      let params = `species=${pokemon.species}&name=${encodeURIComponent(nickname.name)}&upvotes=${nickname.upvotes}&downvotes=${nickname.downvotes}&type=${voteType}`;
+      xhr.open('POST', `http://localhost:3000/vote`);
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.onload = function () {
+        console.log('Ajax fired');
+      }
+      xhr.onerror = function () {
+        console.log('Error');
+      }
+      xhr.send(params);
+    }
+    return vote;
+  }
   handleUpvote() {
-    this.setState({
-      upvotes: this.state.upvotes + 1
-    })
+    let vote = this.handleVote('upvote');
+    if (!this.state.upvoted) {
+      this.setState({
+        upvotes: this.state.upvotes + 1,
+        upvoted: true,
+      }, () => {
+        vote()
+      });
+    }
   }
   handleDownvote() {
-    this.setState({
-      downvotes: this.state.downvotes + 1
-    })
+    let vote = this.handleVote('downvote');
+    if (!this.state.downvoted) {
+      this.setState({
+        downvotes: this.state.downvotes + 1,
+        downvoted: true,
+      }, () => {
+        vote()
+      });
+    }
   }
   handleFavorite(species, nickname) {
 
