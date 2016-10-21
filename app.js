@@ -68,6 +68,30 @@ app.post('/submit-nickname', function (req, res) {
   })
 });
 
+app.post('/vote', function (req, res) {
+  console.log(req.body.species, req.body.name, req.body.upvotes, req.body.downvotes, req.body.type);
+  Pokemon.findOne({ 'species': req.body.species }, function (err, pokemon) {
+    if (err) res.send(err);
+
+    function findNick(nickname) {
+      return nickname.name === decodeURIComponent(req.body.name);
+    }
+
+    let nick = pokemon.nicknames.find(findNick);
+
+    nick.upvotes = Number(req.body.upvotes) + (req.body.type === 'upvote' ? 1 : 0);
+    nick.downvotes = Number(req.body.downvotes) + (req.body.type === 'downvote' ? 1 : 0);
+
+    pokemon.save(function (err) {
+      if (err) res.send(err);
+      res.end();
+    })
+  });
+
+});
+
+
+
 apiRouter.use(function(req, res, next) {
   console.log('Something is happening.');
   res.header("Access-Control-Allow-Origin", "*");
