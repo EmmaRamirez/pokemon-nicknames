@@ -77,7 +77,7 @@ app.post('/vote', function (req, res) {
       return nickname.name === decodeURIComponent(req.body.name);
     }
 
-    let nick = pokemon.nicknames.find(findNick);
+    var nick = pokemon.nicknames.find(findNick);
 
     nick.upvotes = Number(req.body.upvotes) + (req.body.type === 'upvote' ? 1 : 0);
     nick.downvotes = Number(req.body.downvotes) + (req.body.type === 'downvote' ? 1 : 0);
