@@ -38,7 +38,7 @@ class VoteData extends React.Component<VoteDataProps, VoteDataState> {
       let xhr = new XMLHttpRequest();
 
       let params = `species=${pokemon.species}&name=${encodeURIComponent(nickname.name)}&upvotes=${nickname.upvotes}&downvotes=${nickname.downvotes}&type=${voteType}`;
-      xhr.open('POST', `http://localhost:3000/vote`);
+      xhr.open('POST', `http://pokemon-nicknames.herokuapp.com/vote`);
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.onload = function () {
         console.log('Ajax fired');
