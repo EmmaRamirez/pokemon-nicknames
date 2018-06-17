@@ -1,0 +1,33 @@
+.nickname {
+  border: 1px solid #eee;
+  border-radius: .25rem;
+  margin-bottom: .25rem;
+  padding: .25rem;
+}
+
+a {
+  color: #222;
+  font-size: 120%;
+  text-decoration: none;
+}
+
+.nickname-description {
+  font-size: 90%;
+}
+
+.vote-container {
+  display: flex;
+}
+
+.vote-container * {
+  margin: .25rem;
+}
+
+.vote-icon {
+  font-size: 100%;
+}
+
+.material-icons.vote-icon {
+  color: #444;
+  cursor: pointer;
+}

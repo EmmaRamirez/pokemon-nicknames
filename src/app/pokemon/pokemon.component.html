@@ -1,3 +1,14 @@
-<p>
-  pokemon works!
-</p>
+<mat-card class="pokemon">
+    <div class="pokemon-main-info">
+      <mat-card-title>{{ pokemon.species }} #{{ pokemon.id }}</mat-card-title>
+      <img *ngIf="pokemon.id" src="https://www.serebii.net/sunmoon/pokemon/{{ pokemon.id }}.png" />
+    </div>
+    <app-nickname *ngFor="let nickname of pokemon.nicknames"
+      [name]="nickname.name"
+      [upvotes]="nickname.upvotes"
+      [description]="nickname.description"
+      [downvotes]="nickname.downvotes"
+      [id]="pokemon.id"
+    >
+    </app-nickname>
+</mat-card>

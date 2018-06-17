@@ -1,0 +1,13 @@
+button {
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: .25rem;
+  color: white;
+  display: block;
+  padding: .25rem;
+}
+
+.pokemon-container {
+  display: flex;
+
+}
