@@ -88,19 +88,19 @@ class PokemonHandler(web.RequestHandler):
         document = db.pokemon.find_one({ 'id': id })
         return document
 
+    def find_30(self):
+        document = db.pokemon.find().sort("id").limit(30)
+        return document
+
     def get(self, slug=None):
         logger.info('requested {}'.format(slug))
         entry = None
         d = None
-        if is_number(slug):
-          entry = slug
-          d = self.find_one_id(id=entry)
+        if slug is not None:
+            entry = slug.capitalize()
+            d = self.find_one_species(species=entry)
         else:
-          if slug is not None:
-              entry = slug.capitalize()
-          else:
-              entry = 'Pikachu'
-        d = self.find_one_species(species=entry)
+            d = self.find_30()
         self.write(dumps(d))
 
 
