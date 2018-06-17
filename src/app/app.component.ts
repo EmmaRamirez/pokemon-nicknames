@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PokemonService } from './pokemon.service';
 import { Pokemon } from './pokemon';
 
 @Component({
@@ -6,22 +7,22 @@ import { Pokemon } from './pokemon';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  pokes: Pokemon[];
+export class AppComponent implements OnInit {
+  public pokes: Pokemon[];
 
-  constructor() {
-    this.pokes = [
-      {
-        species: 'Pikachu',
-        id: '035',
-        nicknames: []
-      },
-      {
-        species: 'Pikachu',
-        id: '035',
-        nicknames: []
-      },
-    ];
+  constructor(
+    private pokemonService: PokemonService
+  ) {}
+
+  ngOnInit() {
+    this.getPokemon();
+  }
+
+  async getPokemon() {
+    const data = await this.pokemonService.getAllPokemon();
+    {
+      this.pokes = data;
+    }
   }
 
 }

@@ -19,4 +19,11 @@ export class PokemonService {
       .catch(console.error);
   }
 
+  getAllPokemon() {
+    const url = `${this.apiUrl}pokemon`;
+    return fetch(url, { mode: 'cors' })
+      .then(res => res.json())
+      .catch(console.error);
+  }
+
 }

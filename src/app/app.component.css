@@ -9,5 +9,5 @@ button {
 
 .pokemon-container {
   display: flex;
-
+  flex-wrap: wrap;
 }

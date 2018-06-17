@@ -3,8 +3,10 @@
     <img height="32" src="../assets/pokeball.svg" /><h1>Pokémon Nicknames</h1>
   </header>
   <div class="main-container">
-    <div class="pokemon-container" *ngFor="let pokemon of pokes">
-      <app-pokemon></app-pokemon>
+    <div class="pokemon-container">
+      <div *ngFor="let pokemon of pokes">
+        <app-pokemon [pokemon]="pokemon"></app-pokemon>
+      </div>
     </div>
   </div>
 </div>

@@ -19,17 +19,17 @@ export class PokemonComponent implements OnInit {
     this.getPokemon();
   }
 
-  async getPokemon() {
-    console.log(this.pokemon);
-    const species = this.route.snapshot.paramMap.keys;
-    console.error(species);
-    const data = await this.pokemonService.getPokemon('pikachu');
+  getPokemon() {
+    // console.log(this.pokemon);
+    // const species = this.route.snapshot.paramMap.keys;
+    // console.error(species);
+    // const data = await this.pokemonService.getPokemon('pikachu');
 
-    {
-      this.pokemon.id = data.id;
-      this.pokemon.species = data.species;
-      this.pokemon.nicknames = data.nicknames;
-    }
+    // {
+    //   this.pokemon.id = data.id;
+    //   this.pokemon.species = data.species;
+    //   this.pokemon.nicknames = data.nicknames;
+    // }
   }
 
 }

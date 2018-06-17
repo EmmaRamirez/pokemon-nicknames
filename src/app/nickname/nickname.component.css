@@ -2,6 +2,7 @@
   border: 1px solid #eee;
   border-radius: .25rem;
   margin-bottom: .25rem;
+  max-width: 200px;
   padding: .25rem;
 }
 
