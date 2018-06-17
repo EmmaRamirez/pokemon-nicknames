@@ -32,11 +32,24 @@ print(client)
 db = client['pokemon-nicknames']
 
 class MainHandler(web.RequestHandler):
+    def set_default_headers(self):
+        logger.info('Setting headers...')
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+
+    def post(self):
+        self.write('some get')
+
     def get(self):
         message = "Pokemon Nicknames Service v1"
         db=self.settings['db']
         logger.info(message)
         self.write(message)
+
+    def options(self):
+      self.set_status(204)
+      self.finish()
 
 class VoteHandler(web.RequestHandler):
     def get(self):
@@ -52,23 +65,6 @@ class NicknameHandler(web.RequestHandler):
     def post(self):
         pass
 
-# Pokemon.findOne({ 'species': req.body.species }, function (err, pokemon) {
-#     if (err) res.send(err);
-#     pokemon.nicknames.push({
-#       name: req.body.nickname,
-#       description: req.body.description === '' ? 'No description provided.' : req.body.description,
-#       tags: req.body.tags === '' ? [] : req.body.tags.replace(/\#/, '').split(','),
-#       upvotes: 0,
-#       downvotes: 0,
-#     });
-#     pokemon.save(function (err) {
-#       if (err) res.send(err);
-#       res.writeHead(302, {
-#         'Location': '/#!' + req.body.species
-#       });
-#       res.end();
-#     });
-
 def is_number(s):
   try:
     float(s)
@@ -78,6 +74,11 @@ def is_number(s):
 
 
 class PokemonHandler(web.RequestHandler):
+    def set_default_headers(self):
+        logger.info('Setting headers...')
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
 
     def find_one_species(self, species):
         document = db.pokemon.find_one({ 'species': species })
