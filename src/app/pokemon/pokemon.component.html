@@ -3,12 +3,17 @@
       <mat-card-title>{{ pokemon.species }} #{{ pokemon.id }}</mat-card-title>
       <img *ngIf="pokemon.id" src="https://www.serebii.net/sunmoon/pokemon/{{ pokemon.id }}.png" />
     </div>
-    <app-nickname *ngFor="let nickname of pokemon.nicknames"
-      [name]="nickname.name"
-      [upvotes]="nickname.upvotes"
-      [description]="nickname.description"
-      [downvotes]="nickname.downvotes"
-      [id]="pokemon.id"
-    >
-    </app-nickname>
+    <div *ngIf="pokemon.nicknames.length; else elseBlock">
+      <app-nickname *ngFor="let nickname of pokemon.nicknames"
+        [name]="nickname.name"
+        [upvotes]="nickname.upvotes"
+        [description]="nickname.description"
+        [downvotes]="nickname.downvotes"
+        [id]="pokemon.id"
+      >
+      </app-nickname>
+    </div>
+    <ng-template #elseBlock>
+      <p>No Nicknames Yet<p>
+    </ng-template>
 </mat-card>

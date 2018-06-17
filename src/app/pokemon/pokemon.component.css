@@ -1,5 +1,20 @@
 .pokemon {
   margin: .25rem;
+  height: 400px;
+  overflow-y: scroll;
+  width: 400px;
+}
+
+.pokemon::-webkit-scrollbar {
+  background: white;
+  border-radius: .25rem;
+  width: 4px;
+}
+
+.pokemon::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: .25rem;
+  width: 4px;
 }
 
 .pokemon-main-info {

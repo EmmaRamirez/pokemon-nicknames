@@ -1,9 +1,14 @@
 .nickname {
   border: 1px solid #eee;
   border-radius: .25rem;
+  display: flex;
   margin-bottom: .25rem;
-  max-width: 200px;
+  max-width: 100%;
   padding: .25rem;
+}
+
+.nickname-info {
+  padding-left: .5rem;
 }
 
 a {
@@ -17,18 +22,18 @@ a {
 }
 
 .vote-container {
+  border-right: 1px dashed #ccc;
   display: flex;
+  flex-direction: column;
+  font-size: 80%;
 }
 
 .vote-container * {
   margin: .25rem;
 }
 
-.vote-icon {
-  font-size: 100%;
-}
-
 .material-icons.vote-icon {
   color: #444;
   cursor: pointer;
+  font-size: 80%;
 }

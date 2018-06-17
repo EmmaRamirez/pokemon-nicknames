@@ -26,3 +26,8 @@ body {
 .app-header h1 {
   margin: 0 .25rem;
 }
+
+.app-header h1 {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px white;
+}
