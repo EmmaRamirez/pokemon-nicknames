@@ -22,10 +22,12 @@ a {
 }
 
 .vote-container {
+  align-items: center;
   border-right: 1px dashed #ccc;
   display: flex;
   flex-direction: column;
   font-size: 80%;
+  justify-content: center;
 }
 
 .vote-container * {

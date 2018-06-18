@@ -1,9 +1,8 @@
 <div class="nickname">
   <div class="vote-container">
       <i class="material-icons vote-icon">thumb_up</i>
-      <span>{{ upvotes }}</span>
+      <span>{{ upvotes - downvotes }}</span>
       <i class="material-icons vote-icon">thumb_down</i>
-      <span>{{ downvotes }}</span>
   </div>
   <div class="nickname-info">
     <a routerLink="/nickname/{{ name }}">{{ name }}</a>

@@ -1,0 +1,11 @@
+.controls {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem;
+  width: 100%;
+}
+
+mat-form-field {
+  margin: 0 .5rem;
+}

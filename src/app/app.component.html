@@ -1,12 +1,16 @@
 <div class="app-container">
-  <header class="app-header">
+  <header class="sticky app-header">
     <img height="32" src="../assets/pokeball.svg" /><h1>Pokémon Nicknames</h1>
+    <app-controls></app-controls>
   </header>
   <div class="main-container">
     <div class="pokemon-container">
       <div *ngFor="let pokemon of pokes">
         <app-pokemon [pokemon]="pokemon"></app-pokemon>
       </div>
+    </div>
+    <div class="loading" *ngIf="isLoading">
+      <img src="../assets/loading.gif" />
     </div>
   </div>
 </div>

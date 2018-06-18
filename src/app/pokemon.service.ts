@@ -26,4 +26,11 @@ export class PokemonService {
       .catch(console.error);
   }
 
+  getPokemonPage(page: number = 1): Promise<Pokemon[]> {
+    const url = `${this.apiUrl}pokemon/page/${page}`;
+    return fetch(url, { mode: 'cors' })
+      .then(res => res.json())
+      .catch(console.error);
+  }
+
 }

@@ -1,3 +1,34 @@
+.main-container {
+  margin: .5rem;
+  margin-top: 6rem;
+}
+
+.app-header {
+  align-items: center;
+  background: #eee;
+  display: flex;
+  padding: .25rem;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 100;
+}
+
+.sticky {
+  border-bottom: 1px solid #aaa;
+  box-shadow: 0 5px .5rem rgba(0, 0, 0, 0.1);
+}
+
+.app-header img,
+.app-header h1 {
+  margin: 0 .25rem;
+}
+
+.app-header h1 {
+  color: #ee4040;
+}
+
+
 button {
   background: rgba(0, 0, 0, 0.4);
   border: none;
@@ -5,6 +36,12 @@ button {
   color: white;
   display: block;
   padding: .25rem;
+}
+
+.loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .pokemon-container {

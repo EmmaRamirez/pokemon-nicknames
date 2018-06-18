@@ -9,25 +9,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-.main-container {
-  margin: .5rem;
-}
-
-.app-header {
-  background: #ee4040;
-  box-shadow: 0 5px #eee;
-  color: white;
-  display: flex;
-  padding: .5rem;
-}
-
-.app-header img,
-.app-header h1 {
-  margin: 0 .25rem;
-}
-
-.app-header h1 {
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px white;
-}
