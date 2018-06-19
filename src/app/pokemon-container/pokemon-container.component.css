@@ -1,0 +1,16 @@
+.loading {
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  display: flex;
+  justify-content: center;
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 33%;
+}
+
+.app-pokemon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

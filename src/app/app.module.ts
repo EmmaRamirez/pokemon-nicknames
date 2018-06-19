@@ -23,6 +23,7 @@ import { NicknameVoteComponent } from './nickname-vote/nickname-vote.component';
 import { NicknameSubmitComponent } from './nickname-submit/nickname-submit.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ControlsComponent } from './controls/controls.component';
+import { PokemonContainerComponent } from './pokemon-container/pokemon-container.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ControlsComponent } from './controls/controls.component';
     NicknameComponent,
     NicknameVoteComponent,
     NicknameSubmitComponent,
-    ControlsComponent
+    ControlsComponent,
+    PokemonContainerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,8 @@
+<div class="app-pokemon-container">
+    <div *ngFor="let pokemon of pokes">
+      <app-pokemon [pokemon]="pokemon"></app-pokemon>
+    </div>
+  <div class="loading" *ngIf="isLoading">
+    Loading...
+  </div>
+</div>

@@ -39,23 +39,6 @@ button {
   padding: .25rem;
 }
 
-.loading {
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: .25rem;
-  display: flex;
-  justify-content: center;
-  margin: 2rem auto;
-  padding: 1rem;
-  width: 33%;
-}
-
-.pokemon-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .submit-button {
   background: #ee4040;
   color: white;

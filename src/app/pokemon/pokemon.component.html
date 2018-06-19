@@ -5,7 +5,7 @@
         <img *ngIf="pokemon.id" src="https://www.serebii.net/sunmoon/pokemon/{{ pokemon.id }}.png" />
       </a>
     </div>
-    <div *ngIf="pokemon.nicknames.length; else elseBlock">
+    <div *ngIf="pokemon.nicknames; else elseBlock">
       <app-nickname *ngFor="let nickname of pokemon.nicknames"
         [name]="nickname.name"
         [upvotes]="nickname.upvotes"
