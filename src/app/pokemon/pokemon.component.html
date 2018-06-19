@@ -1,21 +1,27 @@
-<mat-card class="pokemon">
+<mat-card class="pokemon" [ngClass]="isSinglePage ? 'single-page' : ''">
     <div class="pokemon-main-info">
       <a href="/pokemon/{{ pokemon.species | lowercase }}" class="pokemon-link">{{ pokemon.species }} #{{ pokemon.id }}</a>
       <a href="/pokemon/{{ pokemon.species | lowercase }}">
         <img *ngIf="pokemon.id" src="https://www.serebii.net/sunmoon/pokemon/{{ pokemon.id }}.png" />
       </a>
     </div>
-    <div *ngIf="pokemon.nicknames; else elseBlock">
-      <app-nickname *ngFor="let nickname of pokemon.nicknames"
-        [name]="nickname.name"
-        [upvotes]="nickname.upvotes"
-        [description]="nickname.description"
-        [downvotes]="nickname.downvotes"
-        [id]="pokemon.id"
-      >
-      </app-nickname>
+    <div *ngIf="isSinglePage"><a class="submit-button">Submit A Nickname</a></div>
+    <div *ngIf="pokemon.nicknames">
+      <div *ngIf="pokemon.nicknames.length; else elseBlock">
+        <app-nickname *ngFor="let nickname of pokemon.nicknames"
+          [name]="nickname.name"
+          [upvotes]="nickname.upvotes"
+          [description]="nickname.description"
+          [downvotes]="nickname.downvotes"
+          [id]="pokemon.id"
+        >
+        </app-nickname>
+      </div>
     </div>
     <ng-template #elseBlock>
-      <p>No Nicknames Yet<p>
+      <div class="no-nickname">
+        <h4>No Nicknames Yet</h4>
+        <a class="submit-button">Submit A Nickname</a>
+      </div>
     </ng-template>
 </mat-card>

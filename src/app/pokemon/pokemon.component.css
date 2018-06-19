@@ -35,3 +35,32 @@
 .pokemon-main-info a:hover {
   color: #ee4040;
 }
+
+.no-nickname {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  width: 400px;
+}
+
+.no-nickname h4 {
+  text-align: center;
+}
+
+.submit-button {
+  display: block;
+  margin: .5rem;
+}
+
+
+.single-page {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vh;
+  margin: 0 auto;
+  width: 80%;
+}

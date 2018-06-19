@@ -14,6 +14,9 @@ const routes: Routes = [
     path: 'submit', component: NicknameSubmitComponent
   },
   {
+    path: 'submit/:id', component: NicknameSubmitComponent
+  },
+  {
     path: 'pokemon', component: PokemonContainerComponent,
   },
   {

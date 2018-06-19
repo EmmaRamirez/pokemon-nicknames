@@ -38,12 +38,3 @@ button {
   display: block;
   padding: .25rem;
 }
-
-.submit-button {
-  background: #ee4040;
-  color: white;
-  cursor: pointer;
-  border-radius: .25rem;
-  margin-left: 2rem;
-  padding: .5rem;
-}

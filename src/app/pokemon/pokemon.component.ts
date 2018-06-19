@@ -8,11 +8,27 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.css']
 })
-export class PokemonComponent {
+export class PokemonComponent implements OnInit {
   @Input() public pokemon: Pokemon;
+  public isSinglePage: boolean;
 
   constructor(private route: ActivatedRoute, private pokemonService: PokemonService) {
     this.pokemon = new Pokemon();
+    this.isSinglePage = false;
+  }
+
+  async getPokemon(id) {
+    console.log(id);
+    const data = await this.pokemonService.getPokemon(id);
+    this.pokemon = data;
+  }
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.getPokemon(id);
+      this.isSinglePage = true;
+    }
   }
 
 }

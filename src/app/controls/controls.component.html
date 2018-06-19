@@ -1,9 +1,9 @@
 <div class="controls">
     <mat-form-field>
-      <mat-select placeholder="Sort by...">
-        <mat-option [value]="">Dex Number</mat-option>
-        <mat-option [value]="">Number of Nicknames</mat-option>
-        <mat-option [value]="">Name</mat-option>
+      <mat-select [(value)]="selected" placeholder="Sort by...">
+        <mat-option value="dexNo">Dex Number</mat-option>
+        <mat-option value="numOfNicknames">Number of Nicknames</mat-option>
+        <mat-option value="speciesName">Species</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
