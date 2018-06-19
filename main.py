@@ -1,6 +1,6 @@
 import json
 import status
-from pymongo import MongoClient
+from pymongo import MongoClient, ReturnDocument
 import logging
 import os
 from bson.json_util import dumps
@@ -58,12 +58,66 @@ class VoteHandler(web.RequestHandler):
     def post(self):
         pass
 
-class NicknameHandler(web.RequestHandler):
-    def get(self):
-        pass
+# app.post('/submit-nickname', function (req, res) {
+#   console.log('Species' + req.body.species);
+#   console.log('Nickname ' + req.body.nickname);
+#   console.log('Description ' + req.body.description);
 
+#   Pokemon.findOne({ 'species': req.body.species }, function (err, pokemon) {
+#     if (err) res.send(err);
+#     pokemon.nicknames.push({
+#       name: req.body.nickname,
+#       description: req.body.description === '' ? 'No description provided.' : req.body.description,
+#       tags: req.body.tags === '' ? [] : req.body.tags.replace(/\#/, '').split(','),
+#       upvotes: 0,
+#       downvotes: 0,
+#     });
+#     pokemon.save(function (err) {
+#       if (err) res.send(err);
+#       res.writeHead(302, {
+#         'Location': '/#!' + req.body.species
+#       });
+#       res.end();
+#     });
+#   })
+# });
+
+
+class NicknameHandler(web.RequestHandler):
     def post(self):
-        pass
+        species = self.get_argument('species')
+        nickname = self.get_argument('nickname')
+        description = self.get_argument('description')
+        tags = self.get_argument('tags')
+        nick = {
+          'name': nickname,
+          'description': description,
+          'tags': tags.split(','),
+          'upvotes': 1,
+          'downvotes': 0
+        }
+
+        names = []
+
+        document = db.pokemon.find_one({ 'species': species })
+        for n in document['nicknames']:
+            names.append(n['name'])
+        if nickname in names:
+            self.write({
+                'result': {
+                    'error': 'Error: Name already exists!'
+                }
+            })
+            # raise Exception('That nickname already exists!')
+        else:
+            db.pokemon.update_one({
+                'species': species
+            }, {
+                '$push': { 'nicknames': nick }
+            })
+            self.write({
+            'result': dumps(document)
+            })
 
 def is_number(s):
   try:
