@@ -33,4 +33,16 @@ export class PokemonService {
       .catch(console.error);
   }
 
+  addNickname({ species, nickname, description, tags }) {
+    const url = `${this.apiUrl}submit-nickname`;
+    return fetch(url, {
+      mode: 'cors',
+      method: 'POST',
+      body: JSON.stringify({ species, nickname, description, tags }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => res.json())
+      .catch(console.error);
+  }
+
 }

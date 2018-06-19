@@ -17,4 +17,10 @@ body {
   border-radius: .25rem;
   margin-left: 2rem;
   padding: .5rem;
+  transition: 240ms all;
+}
+
+.submit-button:hover {
+  background: #ec6565;
+  transition: 240ms all;
 }

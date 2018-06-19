@@ -3,4 +3,5 @@ export class Nickname {
   downvotes: number;
   name: string;
   upvotes: number;
+  tags: string[] | string;
 }

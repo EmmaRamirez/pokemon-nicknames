@@ -1,0 +1,23 @@
+.submit-nickname {
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 40vw;
+  transform: translateY(4rem);
+}
+
+mat-form-field {
+  display: block;
+}
+
+.submit-nickname-button {
+  text-align: center;
+  margin: 0 auto;
+  width: 33%;
+}
+
+button {
+  border: 1px solid #ccc;
+  display: block;
+}

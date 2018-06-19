@@ -1,3 +1,18 @@
-<p>
-  nickname-submit works!
-</p>
+<div class="submit-nickname">
+  <form (ngSubmit)="submitForm()" #nicknameForm="ngForm" >
+    <mat-form-field>
+      <input matInput type='text' placeholder='Species' [(ngModel)]="species" id="species" name="species" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type='text' placeholder='Nickname' [(ngModel)]="nickname.name" id="name" name="name" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea name="description" [(ngModel)]="nickname.description" matInput>{{ nickname.description }}</textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type='text' placeholder='Tags (Comma Separated)' [(ngModel)]="nickname.tags" name="tags" />
+    </mat-form-field>
+    <button type="submit" (click)="submitForm($event)" class="submit-nickname-button submit-button">Submit</button>
+  </form>
+</div>

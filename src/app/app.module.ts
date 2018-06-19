@@ -12,6 +12,7 @@ import {
   MatInputModule,
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { WINDOW_PROVIDERS, WINDOW } from './window.service';
@@ -40,6 +41,7 @@ import { PokemonContainerComponent } from './pokemon-container/pokemon-container
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     MatCardModule,
     MatGridListModule,
     MatButtonModule,
