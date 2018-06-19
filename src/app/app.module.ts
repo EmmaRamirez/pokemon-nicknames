@@ -49,9 +49,6 @@ import { ControlsComponent } from './controls/controls.component';
     MatDividerModule,
     AppRoutingModule,
   ],
-  exports: [
-    MatButtonModule
-  ],
   providers: [ WINDOW_PROVIDERS ],
   bootstrap: [AppComponent]
 })

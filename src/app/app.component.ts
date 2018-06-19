@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
 
   getMorePokemon() {
     this.page += 1;
-    console.error(`Getting Pokemon page: ${this.page}`);
     this.getPokemon(this.page);
   }
 

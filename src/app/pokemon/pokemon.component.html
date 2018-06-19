@@ -1,7 +1,9 @@
 <mat-card class="pokemon">
     <div class="pokemon-main-info">
-      <mat-card-title>{{ pokemon.species }} #{{ pokemon.id }}</mat-card-title>
-      <img *ngIf="pokemon.id" src="https://www.serebii.net/sunmoon/pokemon/{{ pokemon.id }}.png" />
+      <a href="/pokemon/{{ pokemon.species | lowercase }}" class="pokemon-link">{{ pokemon.species }} #{{ pokemon.id }}</a>
+      <a href="/pokemon/{{ pokemon.species | lowercase }}">
+        <img *ngIf="pokemon.id" src="https://www.serebii.net/sunmoon/pokemon/{{ pokemon.id }}.png" />
+      </a>
     </div>
     <div *ngIf="pokemon.nicknames.length; else elseBlock">
       <app-nickname *ngFor="let nickname of pokemon.nicknames"

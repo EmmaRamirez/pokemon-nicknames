@@ -8,12 +8,12 @@ const routes: Routes = [
   {
     path: '', component: AppComponent
   },
-  {
-    path: 'pokemon', component: PokemonComponent,
-  },
-  {
-    path: 'pokemon/:id', component: PokemonComponent
-  }
+  // {
+  //   path: 'pokemon', component: PokemonComponent,
+  // },
+  // {
+  //   path: 'pokemon/:id', component: PokemonComponent
+  // }
 ];
 
 @NgModule({

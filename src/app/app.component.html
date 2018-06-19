@@ -2,6 +2,7 @@
   <header class="sticky app-header">
     <img height="32" src="../assets/pokeball.svg" /><h1>Pokémon Nicknames</h1>
     <app-controls></app-controls>
+    <div class="submit-button">Submit Nickname</div>
   </header>
   <div class="main-container">
     <div class="pokemon-container">
@@ -10,7 +11,7 @@
       </div>
     </div>
     <div class="loading" *ngIf="isLoading">
-      <img src="../assets/loading.gif" />
+      Loading...
     </div>
   </div>
 </div>

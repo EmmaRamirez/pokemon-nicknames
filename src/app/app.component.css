@@ -7,6 +7,7 @@
   align-items: center;
   background: #eee;
   display: flex;
+  justify-content: center;
   padding: .25rem;
   position: fixed;
   top: 0;
@@ -40,12 +41,26 @@ button {
 
 .loading {
   align-items: center;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
   display: flex;
   justify-content: center;
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 33%;
 }
 
 .pokemon-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.submit-button {
+  background: #ee4040;
+  color: white;
+  cursor: pointer;
+  border-radius: .25rem;
+  margin-left: 2rem;
+  padding: .5rem;
 }

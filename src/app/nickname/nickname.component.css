@@ -2,9 +2,10 @@
   border: 1px solid #eee;
   border-radius: .25rem;
   display: flex;
+  height: 64px;
   margin-bottom: .25rem;
-  max-width: 100%;
   padding: .25rem;
+  width: 400px;
 }
 
 .nickname-info {
@@ -37,5 +38,4 @@ a {
 .material-icons.vote-icon {
   color: #444;
   cursor: pointer;
-  font-size: 80%;
 }

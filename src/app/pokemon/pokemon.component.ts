@@ -8,28 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.css']
 })
-export class PokemonComponent implements OnInit {
+export class PokemonComponent {
   @Input() public pokemon: Pokemon;
 
   constructor(private route: ActivatedRoute, private pokemonService: PokemonService) {
     this.pokemon = new Pokemon();
-  }
-
-  ngOnInit() {
-    this.getPokemon();
-  }
-
-  getPokemon() {
-    // console.log(this.pokemon);
-    // const species = this.route.snapshot.paramMap.keys;
-    // console.error(species);
-    // const data = await this.pokemonService.getPokemon('pikachu');
-
-    // {
-    //   this.pokemon.id = data.id;
-    //   this.pokemon.species = data.species;
-    //   this.pokemon.nicknames = data.nicknames;
-    // }
   }
 
 }
