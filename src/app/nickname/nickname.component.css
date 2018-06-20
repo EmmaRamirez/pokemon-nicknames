@@ -49,7 +49,7 @@ a {
 }
 
 .tags {
-  cursor: pointer;
+  /* cursor: pointer; */
   display: flex;
   justify-content: space-between;
   margin-top: .25rem;
@@ -62,5 +62,5 @@ a {
 }
 
 .tag:hover {
-  color: lightskyblue;
+  /* color: lightskyblue; */
 }

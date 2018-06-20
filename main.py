@@ -52,35 +52,20 @@ class MainHandler(web.RequestHandler):
       self.finish()
 
 class VoteHandler(web.RequestHandler):
-    def get(self):
-        pass
+    def set_default_headers(self):
+        logger.info('Setting headers...')
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
 
     def post(self):
-        pass
+        species = self.get_argument('species')
+        nickname = self.get_argument('nickname')
 
-# app.post('/submit-nickname', function (req, res) {
-#   console.log('Species' + req.body.species);
-#   console.log('Nickname ' + req.body.nickname);
-#   console.log('Description ' + req.body.description);
-
-#   Pokemon.findOne({ 'species': req.body.species }, function (err, pokemon) {
-#     if (err) res.send(err);
-#     pokemon.nicknames.push({
-#       name: req.body.nickname,
-#       description: req.body.description === '' ? 'No description provided.' : req.body.description,
-#       tags: req.body.tags === '' ? [] : req.body.tags.replace(/\#/, '').split(','),
-#       upvotes: 0,
-#       downvotes: 0,
-#     });
-#     pokemon.save(function (err) {
-#       if (err) res.send(err);
-#       res.writeHead(302, {
-#         'Location': '/#!' + req.body.species
-#       });
-#       res.end();
-#     });
-#   })
-# });
+        document = db.pokemon.find_one({ 'species': species })
+        self.write({
+          'result': 'Votes updated'
+        })
 
 
 class NicknameHandler(web.RequestHandler):
