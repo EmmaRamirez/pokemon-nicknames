@@ -2,7 +2,7 @@
   border: 1px solid #eee;
   border-radius: .25rem;
   display: flex;
-  height: 64px;
+  height: 80px;
   margin-bottom: .25rem;
   padding: .25rem;
   width: 400px;
@@ -10,6 +10,14 @@
 
 .nickname-info {
   padding-left: .5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
 }
 
 a {
@@ -38,4 +46,21 @@ a {
 .material-icons.vote-icon {
   color: #444;
   cursor: pointer;
+}
+
+.tags {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  margin-top: .25rem;
+}
+
+.tag {
+  font-size: 80%;
+  color: #555;
+  margin-right: 0.25rem;
+}
+
+.tag:hover {
+  color: lightskyblue;
 }

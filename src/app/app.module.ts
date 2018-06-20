@@ -9,6 +9,7 @@ import {
   MatCheckboxModule,
   MatToolbarModule,
   MatDividerModule,
+  MatAutocompleteModule,
   MatInputModule,
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +26,9 @@ import { NicknameSubmitComponent } from './nickname-submit/nickname-submit.compo
 import { AppRoutingModule } from './/app-routing.module';
 import { ControlsComponent } from './controls/controls.component';
 import { PokemonContainerComponent } from './pokemon-container/pokemon-container.component';
+import { AdminComponent } from './admin/admin.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,13 +39,16 @@ import { PokemonContainerComponent } from './pokemon-container/pokemon-container
     NicknameVoteComponent,
     NicknameSubmitComponent,
     ControlsComponent,
-    PokemonContainerComponent
+    PokemonContainerComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatGridListModule,
     MatButtonModule,
@@ -49,6 +56,7 @@ import { PokemonContainerComponent } from './pokemon-container/pokemon-container
     MatFormFieldModule,
     MatCheckboxModule,
     MatToolbarModule,
+    MatAutocompleteModule,
     MatInputModule,
     MatDividerModule,
     AppRoutingModule,

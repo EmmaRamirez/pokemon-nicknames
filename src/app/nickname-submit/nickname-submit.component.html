@@ -1,10 +1,22 @@
 <div class="submit-nickname">
+  <img *ngIf="id" src="https://www.serebii.net/sunmoon/pokemon/{{ id }}.png" />
   <form (ngSubmit)="submitForm()" #nicknameForm="ngForm" >
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Species" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="species" name="species" id="species">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    <!-- <mat-form-field>
+      <input matInput type='text' [formControl]="speciesControl" placeholder='Species' [matAutocomplete]="auto" [(ngModel)]="species" id="species" name="species" />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options" [value]="option">{{ option }}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field> -->
     <mat-form-field>
-      <input matInput type='text' placeholder='Species' [(ngModel)]="species" id="species" name="species" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type='text' placeholder='Nickname' [(ngModel)]="nickname.name" id="name" name="name" />
+      <input matInput type='text' placeholder='Nickname' [(ngModel)]="nickname.nickname" id="nickname" name="nickname" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>Description</mat-label>
@@ -16,3 +28,4 @@
     <button type="submit" (click)="submitForm($event)" class="submit-nickname-button submit-button">Submit</button>
   </form>
 </div>
+f

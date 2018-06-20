@@ -32,7 +32,11 @@
   flex-direction: column;
 }
 
-.pokemon-main-info a:hover {
+.pokemon-main-info a {
+  text-decoration: none;
+}
+
+.pokemon-main-info .pokemon-link:hover {
   color: #ee4040;
 }
 

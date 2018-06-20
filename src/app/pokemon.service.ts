@@ -34,14 +34,24 @@ export class PokemonService {
   }
 
   addNickname({ species, nickname, description, tags }) {
+    if (species == null || nickname == null) {
+      throw new Error('Species and nickname are required.');
+    }
+    const formData = new FormData();
+    formData.append('species', species);
+    formData.append('nickname', nickname);
+    formData.append('description', description || 'No description provided.');
+    formData.append('tags', tags || '');
     const url = `${this.apiUrl}submit-nickname`;
     return fetch(url, {
       mode: 'cors',
       method: 'POST',
-      body: JSON.stringify({ species, nickname, description, tags }),
-      headers: { 'Content-Type': 'application/json' }
+      body: formData
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        return res;
+      })
       .catch(console.error);
   }
 

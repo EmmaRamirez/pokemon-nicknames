@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { Pokemon } from './pokemon';
 import { NicknameSubmitComponent } from './nickname-submit/nickname-submit.component';
 import { PokemonContainerComponent } from './pokemon-container/pokemon-container.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'pokemon/:id', component: PokemonComponent
+  },
+  {
+    path: 'admin', component: AdminComponent
   }
 ];
 

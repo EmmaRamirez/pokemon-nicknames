@@ -21,3 +21,17 @@ button {
   border: 1px solid #ccc;
   display: block;
 }
+
+.cdk-overlay-pane::-webkit-scrollbar {
+  background: white;
+  border-radius: .25rem;
+  width: 4px;
+}
+
+.cdk-overlay-pane::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: .25rem;
+  width: 4px;
+}
+
+

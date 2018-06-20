@@ -1,11 +1,14 @@
 <div class="nickname">
   <div class="vote-container">
-      <i class="material-icons vote-icon">keyboard_arrow_up</i>
+      <i (click)="upVote()" class="material-icons vote-icon">keyboard_arrow_up</i>
       <span>{{ upvotes - downvotes }}</span>
-      <i class="material-icons vote-icon">keyboard_arrow_down</i>
+      <i (click)="downVote()" class="material-icons vote-icon">keyboard_arrow_down</i>
   </div>
   <div class="nickname-info">
     <a routerLink="/nickname/{{ name }}">{{ name }}</a>
     <p class="nickname-description">{{ description }}</p>
+    <div *ngIf="tags" class="tags">
+      <span *ngFor="let tag of tags" class="tag">#{{ tag.trim() }}</span>
+    </div>
   </div>
 </div>
