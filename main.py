@@ -84,6 +84,12 @@ class VoteHandler(web.RequestHandler):
 
 
 class NicknameHandler(web.RequestHandler):
+    def set_default_headers(self):
+        logger.info('Setting headers...')
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+
     def post(self):
         species = self.get_argument('species')
         nickname = self.get_argument('nickname')
