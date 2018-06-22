@@ -7,7 +7,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <input type="search" matInput placeholder="Search..." value="">
+      <input (keyup)="search($event)" type="search" matInput placeholder="Search..." value="">
     </mat-form-field>
     <mat-checkbox>Exclude Nicknameless</mat-checkbox>
 </div>

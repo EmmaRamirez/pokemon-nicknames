@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pokemon } from './pokemon';
-import { Observable, of } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,16 @@ import { Observable, of } from 'rxjs';
 export class PokemonService {
 
   private apiUrl = 'http://localhost:8888/';
+  public filterString = '';
 
   constructor(private http: HttpClient) { }
+
+  getFilters = (f) => f.species.startsWith(this.filterString);
+  getSorters = (a, b) => {
+    if (a > b) { return 1; }
+    if (a < b) { return -1; }
+    return 1;
+  }
 
   getPokemon(id: string = 'bulbasaur'): any {
     const url = `${this.apiUrl}pokemon/${id}`;

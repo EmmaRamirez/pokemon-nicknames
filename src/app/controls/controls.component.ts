@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import {
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
+import { PokemonService } from '../pokemon.service';
 
 enum Options {
   dexNo = 'dexNo',
@@ -14,9 +19,17 @@ enum Options {
 export class ControlsComponent implements OnInit {
   selected = Options.dexNo;
 
-  constructor() { }
+  public searchTerms = new Subject<string>();
 
-  ngOnInit() {
+  constructor(private pokemonService: PokemonService) { }
+
+  search(event): void {
+    this.pokemonService.filterString = event.target.value;
+    console.log(this.pokemonService.filterString);
+  }
+
+  ngOnInit(): void {
+    // this.pokemonService.filterString
   }
 
 }

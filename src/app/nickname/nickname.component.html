@@ -8,7 +8,7 @@
     <span>{{ name }}</span>
     <p class="nickname-description">{{ description }}</p>
     <div *ngIf="tags" class="tags">
-      <span *ngFor="let tag of tags" class="tag">#{{ tag.trim() }}</span>
+      <span *ngFor="let tag of tags" class="tag"><span *ngIf="tag !== ''">#{{ tag.trim() }}</span></span>
     </div>
   </div>
 </div>

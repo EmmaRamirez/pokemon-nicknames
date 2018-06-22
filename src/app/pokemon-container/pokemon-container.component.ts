@@ -37,9 +37,10 @@ export class PokemonContainerComponent implements OnInit {
   }
 
   async getPokemon(page) {
+    if (this.page > 27) { throw new Error('Exceeded page limit.'); }
     this.isLoading = true;
     const data = await this.pokemonService.getPokemonPage(page);
-    this.pokes.push(...data);
+    this.pokes.push(...data.filter(this.pokemonService.getFilters));
     this.isLoading = false;
   }
 
