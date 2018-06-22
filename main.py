@@ -83,7 +83,7 @@ class NicknameHandler(web.RequestHandler):
         nick = {
           'name': nickname,
           'description': description,
-          'tags': tags.split(','),
+          'tags': list(map(lambda x: x.lower(), tags.split(','))),
           'upvotes': 1,
           'downvotes': 0
         }
@@ -107,7 +107,9 @@ class NicknameHandler(web.RequestHandler):
                 '$push': { 'nicknames': nick }
             })
             self.write({
-            'result': dumps(document)
+              'result': {
+                'document': dumps(document),
+                'nickname': nick
             })
 
 def is_number(s):
