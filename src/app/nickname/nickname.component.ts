@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-nickname',
   templateUrl: './nickname.component.html',
-  styleUrls: ['./nickname.component.css']
+  styleUrls: ['./nickname.component.scss']
 })
 export class NicknameComponent {
   @Input() public description: Nickname['description'];

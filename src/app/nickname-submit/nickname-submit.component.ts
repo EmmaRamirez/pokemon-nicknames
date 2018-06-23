@@ -11,7 +11,7 @@ import { allSpecies } from '../shared/allSpecies';
 @Component({
   selector: 'app-nickname-submit',
   templateUrl: './nickname-submit.component.html',
-  styleUrls: ['./nickname-submit.component.css']
+  styleUrls: ['./nickname-submit.component.scss']
 })
 export class NicknameSubmitComponent implements OnInit {
 

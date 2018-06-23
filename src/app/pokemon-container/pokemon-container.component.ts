@@ -7,7 +7,7 @@ import { Pokemon } from '../pokemon';
 @Component({
   selector: 'app-pokemon-container',
   templateUrl: './pokemon-container.component.html',
-  styleUrls: ['./pokemon-container.component.css']
+  styleUrls: ['./pokemon-container.component.scss']
 })
 export class PokemonContainerComponent implements OnInit {
   public pokes: Pokemon[];
