@@ -1,6 +1,6 @@
 <div class="submit-nickname">
   <img *ngIf="id" src="https://www.serebii.net/sunmoon/pokemon/{{ id }}.png" />
-  <form (ngSubmit)="submitForm()" #nicknameForm="ngForm" >
+  <form (ngSubmit)="submitForm($event)" #nicknameForm="ngForm" >
     <mat-form-field class="example-full-width">
         <input type="text" placeholder="Species" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="species" name="species" id="species">
         <mat-autocomplete #auto="matAutocomplete">
