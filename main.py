@@ -38,14 +38,9 @@ class MainHandler(web.RequestHandler):
         self.set_header("Access-Control-Allow-Headers", "x-requested-with")
         self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
 
-    def post(self):
-        self.write('some get')
-
     def get(self):
-        message = "Pokemon Nicknames Service v1"
-        db=self.settings['db']
-        logger.info(message)
-        self.write(message)
+        self.redirect('/index.html')
+        return
 
     def options(self):
       self.set_status(204)
@@ -183,7 +178,8 @@ def make_app():
         (r"/pokemon/([^/]+)", PokemonHandler),
         (r"/pokemon/page/([^/]+)", PokemonPageHandler),
         (r"/vote", VoteHandler),
-        (r"/submit-nickname", NicknameHandler)
+        (r"/submit-nickname", NicknameHandler),
+        (r"/(.*)", web.StaticFileHandler, { 'path': 'dist/pokemon-nicknames' }),
     ], db=db)
 
 if __name__ == "__main__":

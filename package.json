@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "npm i -g @angular/cli && ng build --env=prod --aot -prod"
+    "postinstall": "npm i -g @angular/cli && ng build --aot --prod"
   },
   "engines": {
     "node": "8.9.0",
