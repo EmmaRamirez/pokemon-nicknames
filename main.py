@@ -110,6 +110,7 @@ class NicknameHandler(web.RequestHandler):
               'result': {
                 'document': dumps(document),
                 'nickname': nick
+              }
             })
 
 def is_number(s):
