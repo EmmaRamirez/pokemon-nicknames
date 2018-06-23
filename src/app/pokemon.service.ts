@@ -13,6 +13,10 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
+  getFilterString() {
+    return this.filterString;
+  }
+
   getFilters = (f) => f.species.startsWith(this.filterString);
   getSorters = (a, b) => {
     if (a > b) { return 1; }

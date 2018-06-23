@@ -12,16 +12,18 @@ import { Pokemon } from '../pokemon';
 export class PokemonContainerComponent implements OnInit {
   public pokes: Pokemon[];
   public isLoading: boolean;
+  public lastSearchString = '';
   private page: number;
 
   constructor(
-    private pokemonService: PokemonService,
+    public pokemonService: PokemonService,
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window
   ) {
     this.pokes = [];
     this.page = 1;
     this.isLoading = true;
+    window.setInterval(() => this.checkSearchString(this), 250);
   }
 
   @HostListener('window:scroll', [])
@@ -37,11 +39,34 @@ export class PokemonContainerComponent implements OnInit {
   }
 
   async getPokemon(page) {
-    if (this.page > 27) { throw new Error('Exceeded page limit.'); }
-    this.isLoading = true;
-    const data = await this.pokemonService.getPokemonPage(page);
-    this.pokes.push(...data.filter(this.pokemonService.getFilters));
-    this.isLoading = false;
+    if (this.page > 27) {
+      this.isLoading = false;
+    } else {
+      this.isLoading = true;
+      try {
+        const data = await this.pokemonService.getPokemonPage(page);
+        this.pokes.push(...data.filter(this.pokemonService.getFilters));
+        this.isLoading = false;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }
+
+  getString() {
+    return this.pokemonService.getFilterString();
+  }
+
+  checkSearchString(t) {
+    if (this.getString() !== t.lastSearchString) {
+      t.pokes = [];
+      t.page = 1;
+      t.lastSearchString = t.getString();
+      t.getPokemon(t.page);
+    }
+    if (this.lastSearchString !== '') {
+      this.getMorePokemon();
+    }
   }
 
   ngOnInit() {

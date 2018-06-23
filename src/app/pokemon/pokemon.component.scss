@@ -47,10 +47,20 @@
 
 .pokemon-main-info a {
   text-decoration: none;
+  padding: .25rem;
+  border-radius: .25rem;
+  transition: 250ms ease-out;
+  outline: 1px solid transparent;
 }
 
 .pokemon-main-info .pokemon-link:hover {
-  color: #ee4040;
+  // color: #ee4040;
+  background: #eee;
+  transition: 250ms ease-in;
+}
+
+.pokemon-main-info .pokemon-link:active {
+  outline: 1px solid #ee4040;
 }
 
 .no-nickname {
@@ -64,6 +74,18 @@
 }
 
 .no-nickname h4 {
+  text-align: center;
+}
+
+.no-of-nicknames {
+  color: rgba(#ee4040, 0.8);
+  //color: white;
+  border-radius: .25rem;
+  padding: .25rem;
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  font-size: 85%;
   text-align: center;
 }
 
