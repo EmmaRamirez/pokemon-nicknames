@@ -6,7 +6,7 @@
       </a>
       <a routerLink="submit/{{ pokemon.species }}" class="submit-button">Submit A Nickname</a>
     </div>
-    <div *ngIf="pokemon.nicknames">
+    <div *ngIf="pokemon.nicknames" class="nicknames-container">
       <div *ngIf="pokemon.nicknames.length; else elseBlock">
         <app-nickname *ngFor="let nickname of pokemon.nicknames"
           [name]="nickname.name"

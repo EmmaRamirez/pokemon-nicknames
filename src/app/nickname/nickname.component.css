@@ -1,6 +1,7 @@
 .nickname {
   border: 1px solid #eee;
   border-radius: .25rem;
+  box-shadow: 0 0 .25rem #eee;
   display: flex;
   height: 80px;
   margin-bottom: .25rem;

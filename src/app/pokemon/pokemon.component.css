@@ -3,20 +3,33 @@
   margin: .25rem;
   height: 200px;
   justify-content: space-between;
-  overflow-y: scroll;
+  overflow: none;
   width: 600px;
 }
 
-.pokemon::-webkit-scrollbar {
-  background: white;
-  border-radius: .25rem;
-  width: 4px;
+.nicknames-container {
+  height: 200px;
+  padding-right: .5rem;
+  overflow-y: auto;
 }
 
-.pokemon::-webkit-scrollbar-thumb {
+.pokemon:hover .nicknames-container::-webkit-scrollbar-thumb {
   background: #ccc;
+  transition: 130ms all;
+}
+
+.nicknames-container::-webkit-scrollbar {
+  background: transparent;
   border-radius: .25rem;
   width: 4px;
+  transition: 130ms all;
+}
+
+.nicknames-container::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: .25rem;
+  width: 4px;
+  transition: 130ms all;
 }
 
 .pokemon-link {
