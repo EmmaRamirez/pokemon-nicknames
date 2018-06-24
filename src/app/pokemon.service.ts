@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pokemon } from './pokemon';
+import { environment } from '../environments/environment';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Subject } from 'rxjs';
 })
 export class PokemonService {
 
-  private apiUrl = 'https://pokemon-nicknames.herokuapp.com/';
+  private apiUrl = environment.production ? 'https://pokemon-nicknames.herokuapp.com/' : 'http://localhost:8888/';
   public filterString = '';
 
   constructor(private http: HttpClient) { }
