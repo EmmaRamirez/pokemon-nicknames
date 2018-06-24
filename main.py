@@ -28,7 +28,6 @@ connectionstring = 'mongodb://%s:%s@%s:%s/pokemon-nicknames' % (DB_USER, DB_PASS
 logger.info(connectionstring)
 
 client = MongoClient(connectionstring)
-print(client)
 db = client['pokemon-nicknames']
 
 class MainHandler(web.RequestHandler):
@@ -82,9 +81,7 @@ class NicknameHandler(web.RequestHandler):
           'upvotes': 1,
           'downvotes': 0
         }
-
         names = []
-
         document = db.pokemon.find_one({ 'species': species })
         for n in document['nicknames']:
             names.append(n['name'])
@@ -94,7 +91,6 @@ class NicknameHandler(web.RequestHandler):
                     'error': 'Error: Name already exists!'
                 }
             })
-            # raise Exception('That nickname already exists!')
         else:
             db.pokemon.update_one({
                 'species': species
@@ -138,14 +134,6 @@ class PokemonHandler(web.RequestHandler):
         document = db.pokemon.find_one({ 'species': species })
         return document
 
-    def find_one_id(self, id):
-        document = db.pokemon.find_one({ 'id': id })
-        return document
-
-    def find_30(self):
-        document = db.pokemon.find().sort("id").limit(30)
-        return document
-
     def post(self):
         db.pokemon.save()
         return 'It worked'
@@ -158,7 +146,7 @@ class PokemonHandler(web.RequestHandler):
             entry = slug.capitalize()
             d = self.find_one_species(species=entry)
         else:
-            d = self.find_30()
+            self.write({ 'error': 'Could not find matching species' })
         self.write(dumps(d))
 
 class PokemonPageHandler(web.RequestHandler):
@@ -187,7 +175,7 @@ def make_app():
         (r"/", MainHandler),
         (r"/pokemon/search", SearchHandler),
         # (r"/pokemon", PokemonHandler),
-        # (r"/pokemon/([^/]+)", PokemonHandler),
+        (r"/pokemon/([^/]+)", PokemonHandler),
         (r"/pokemon/page/([^/]+)", PokemonPageHandler),
         (r"/vote", VoteHandler),
         (r"/submit-nickname", NicknameHandler),
