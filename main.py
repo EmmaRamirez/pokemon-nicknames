@@ -115,6 +115,17 @@ def is_number(s):
   except ValueError:
     return False
 
+class SearchHandler(web.RequestHandler):
+    def set_default_headers(self):
+        logger.info('Setting headers...')
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+
+    def get(self, slug=None):
+        species = self.get_argument("species")
+        document = db.pokemon.find({ 'species': { '$regex': '(^' + species + ')' }}).sort("id")
+        self.write(dumps(document))
 
 class PokemonHandler(web.RequestHandler):
     def set_default_headers(self):
@@ -174,8 +185,9 @@ class PokemonPageHandler(web.RequestHandler):
 def make_app():
     return web.Application([
         (r"/", MainHandler),
-        (r"/pokemon", PokemonHandler),
-        (r"/pokemon/([^/]+)", PokemonHandler),
+        (r"/pokemon/search", SearchHandler),
+        # (r"/pokemon", PokemonHandler),
+        # (r"/pokemon/([^/]+)", PokemonHandler),
         (r"/pokemon/page/([^/]+)", PokemonPageHandler),
         (r"/vote", VoteHandler),
         (r"/submit-nickname", NicknameHandler),
