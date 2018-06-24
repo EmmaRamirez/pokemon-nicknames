@@ -1,0 +1,11 @@
+{
+  "stack": "heroku-16",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ]
+}

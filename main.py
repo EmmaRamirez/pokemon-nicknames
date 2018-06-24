@@ -21,7 +21,7 @@ logger = logging.getLogger('api')
 DB_USER = os.getenv('DB_USER')
 DB_PASS = os.getenv('DB_PASS')
 HOST = os.getenv('HOST')
-PORT = os.getenv('PORT')
+PORT = os.getenv('DB_PORT')
 
 connectionstring = 'mongodb://%s:%s@%s:%s/pokemon-nicknames' % (DB_USER, DB_PASS, HOST, PORT)
 
@@ -183,7 +183,7 @@ def make_app():
     ], db=db)
 
 if __name__ == "__main__":
-    port = 8888
+    port = os.getenv('PORT')
     logger.info('Started API Server at port {}'.format(port))
     app = make_app()
     app.listen(port)

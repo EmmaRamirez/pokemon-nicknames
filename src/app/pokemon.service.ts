@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class PokemonService {
 
-  private apiUrl = 'http://localhost:8888/';
+  private apiUrl = 'https://pokemon-nicknames.herokuapp.com/';
   public filterString = '';
 
   constructor(private http: HttpClient) { }
