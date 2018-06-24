@@ -42,7 +42,11 @@
 }
 
 .submit-button {
-  background: #333;
+  background: #222;
+}
+
+.submit-button:hover {
+  background: lighten(#333, 8%);
 }
 
 
