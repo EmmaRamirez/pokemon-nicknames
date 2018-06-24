@@ -24,6 +24,9 @@ const routes: Routes = [
     path: 'pokemon/:id', component: PokemonComponent
   },
   {
+    path: 'pokemon/search?species=:species', component: PokemonContainerComponent,
+  },
+  {
     path: 'admin', component: AdminComponent
   }
 ];

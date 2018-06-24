@@ -14,15 +14,16 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getFilterString() {
-    return this.filterString;
-  }
+  getFilterString() { return this.filterString; }
 
-  getFilters = (f) => f.species.startsWith(this.filterString);
-  getSorters = (a, b) => {
-    if (a > b) { return 1; }
-    if (a < b) { return -1; }
-    return 1;
+  getPokemonSearch(search: string): Promise<Pokemon[]> {
+    if (search === '' || (search.match(/\s/g) && search.match(/\s/g).length > 0)) {
+      return this.getPokemonPage(1);
+    }
+    const url = `${this.apiUrl}pokemon/search?species=${search}`;
+    return fetch(url, { mode: 'cors' })
+      .then(res => res.json())
+      .catch(console.error);
   }
 
   getPokemon(id: string = 'bulbasaur'): any {

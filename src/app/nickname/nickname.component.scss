@@ -35,6 +35,8 @@ a {
 
 .nickname-description {
   font-size: 90%;
+  max-width: 24rem;
+  word-wrap: break-word;
 }
 
 .vote-container {

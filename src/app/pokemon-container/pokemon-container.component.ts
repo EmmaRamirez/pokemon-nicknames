@@ -1,8 +1,15 @@
-import { Component, HostListener, OnInit, Inject, Input } from '@angular/core';
+import { Component, HostListener, OnInit, Inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { WINDOW } from '../window.service';
 import { PokemonService } from '../pokemon.service';
 import { Pokemon } from '../pokemon';
+
+const formatString = (s: string) => {
+  if (s === '') { return ''; }
+  if (s.toLowerCase() === 'ho-oh') { return 'Ho-Oh'; }
+  return s.split('')[0].toUpperCase() + s.slice(1).toLowerCase();
+};
 
 @Component({
   selector: 'app-pokemon-container',
@@ -17,6 +24,7 @@ export class PokemonContainerComponent implements OnInit {
 
   constructor(
     public pokemonService: PokemonService,
+    private location: Location,
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window
   ) {
@@ -39,17 +47,30 @@ export class PokemonContainerComponent implements OnInit {
   }
 
   async getPokemon(page) {
-    if (this.page > 27) {
+    if (this.page > 27 || this.getString() !== '') {
       this.isLoading = false;
     } else {
       this.isLoading = true;
       try {
         const data = await this.pokemonService.getPokemonPage(page);
-        this.pokes.push(...data.filter(this.pokemonService.getFilters));
+        this.pokes.push(...data);
         this.isLoading = false;
       } catch (e) {
         console.error(e);
       }
+    }
+  }
+
+  async searchPokemon(search) {
+    // this.location.go(`/pokemon/search?species=${search}`);
+    this.isLoading = true;
+    try {
+      const data = await this.pokemonService.getPokemonSearch(formatString(search));
+      this.pokes.push(...data);
+      this.isLoading = false;
+    } catch (e) {
+      console.error(e);
+      this.isLoading = false;
     }
   }
 
@@ -62,10 +83,7 @@ export class PokemonContainerComponent implements OnInit {
       t.pokes = [];
       t.page = 1;
       t.lastSearchString = t.getString();
-      t.getPokemon(t.page);
-    }
-    if (this.lastSearchString !== '') {
-      this.getMorePokemon();
+      t.searchPokemon(t.getString());
     }
   }
 
