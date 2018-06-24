@@ -1,4 +1,7 @@
+@import "../../variables";
+
 .pokemon {
+  background: #333;
   display: flex;
   margin: .25rem;
   height: 200px;
@@ -14,7 +17,7 @@
 }
 
 .pokemon:hover .nicknames-container::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: rgba(black, 0.5);
   transition: 130ms all;
 }
 
@@ -33,7 +36,7 @@
 }
 
 .pokemon-link {
-  color: unset;
+  color: white;
   font-size: 125%;
   text-decoration: none;
 }
@@ -53,8 +56,18 @@
   outline: 1px solid transparent;
 }
 
+.pokemon-main-info img {
+  filter: drop-shadow(-1px 1px white) drop-shadow(1px -1px white) drop-shadow(-1px -1px white) drop-shadow(1px 1px white);
+  transition: 250ms all;
+}
+
+.pokemon-main-info img:hover {
+  filter: drop-shadow(-1px 1px lightblue) drop-shadow(1px -1px lightblue) drop-shadow(-1px -1px lightblue) drop-shadow(1px 1px lightblue);
+  transition: 250ms all;
+}
+
 .pokemon-main-info .pokemon-link:hover {
-  // color: #ee4040;
+  color: #111;
   background: #eee;
   transition: 250ms ease-in;
 }
@@ -65,6 +78,7 @@
 
 .no-nickname {
   align-items: center;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,7 +92,7 @@
 }
 
 .no-of-nicknames {
-  color: rgba(#ee4040, 0.8);
+  color: rgba(white, 0.8);
   //color: white;
   border-radius: .25rem;
   padding: .25rem;
@@ -90,8 +104,15 @@
 }
 
 .submit-button {
+  background: $main-color;
   display: block;
   margin: .5rem;
+  transition: 250ms all;
+}
+
+.submit-button:hover {
+  background: lighten($main-color, 10%);
+  transition: 250ms all;
 }
 
 

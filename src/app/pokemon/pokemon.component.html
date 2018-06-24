@@ -1,4 +1,4 @@
-<mat-card class="pokemon" [ngClass]="isSinglePage ? 'single-page' : ''">
+<mat-card class="pokemon species-{{ pokemon.species }}" [ngClass]="isSinglePage ? 'single-page' : ''">
     <div class="pokemon-main-info">
       <span class="no-of-nicknames" *ngIf="pokemon.nicknames.length && pokemon.nicknames.length > 1">{{ pokemon.nicknames.length }} nicknames</span>
       <a routerLink="/pokemon/{{ pokemon.species | lowercase }}" class="pokemon-link">{{ pokemon.species }} #{{ pokemon.id }}</a>

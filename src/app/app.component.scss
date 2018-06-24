@@ -1,3 +1,5 @@
+@import '../variables';
+
 .main-container {
   margin: .5rem;
   margin-top: 6rem;
@@ -5,18 +7,27 @@
 
 .app-header {
   align-items: center;
-  background: #eee;
+  background: $main-color;
+  color: white;
   display: flex;
-  justify-content: center;
+  font-size: 90%;
+  justify-content: space-around;
+  height: 2rem;
+  left: 0;
   padding: .25rem;
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 100;
 }
 
+.header-logo {
+  align-items: center;
+  display: flex;
+}
+
 .sticky {
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #222;
   box-shadow: 0 5px .5rem rgba(0, 0, 0, 0.1);
 }
 
@@ -27,7 +38,11 @@
 }
 
 .app-header h1 {
-  color: #ee4040;
+  color: white;
+}
+
+.submit-button {
+  background: #333;
 }
 
 

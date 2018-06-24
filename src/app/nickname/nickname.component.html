@@ -5,7 +5,7 @@
       <i (click)="downVote()" class="material-icons vote-icon">keyboard_arrow_down</i>
   </div> -->
   <div class="nickname-info">
-    <span>{{ name }}</span>
+    <span class="nickname-name">{{ name }}</span>
     <p class="nickname-description">{{ description }}</p>
     <div *ngIf="tags" class="tags">
       <span *ngFor="let tag of tags" class="tag"><span *ngIf="tag !== ''">#{{ tag.trim() }}</span></span>

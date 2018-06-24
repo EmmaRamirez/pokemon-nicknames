@@ -6,12 +6,12 @@
 }
 
 body {
+  background: #222;
   margin: 0;
   padding: 0;
 }
 
 .submit-button {
-  background: #ee4040;
   color: white;
   cursor: pointer;
   border-radius: .25rem;
@@ -21,6 +21,5 @@ body {
 }
 
 .submit-button:hover {
-  background: #ec6565;
   transition: 240ms all;
 }
