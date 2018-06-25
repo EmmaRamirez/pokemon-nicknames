@@ -6,7 +6,7 @@
   color: #fff;
   display: flex;
   height: 80px;
-  margin-bottom: .25rem;
+  margin: .25rem;
   padding: .25rem;
   width: 400px;
   @media screen and (max-width: 640px) {
@@ -14,6 +14,10 @@
     height: auto;
   }
 
+}
+
+.single-page .nickname {
+  margin: .5rem;
 }
 
 .nickname-info {
