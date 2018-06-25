@@ -8,12 +8,22 @@
   justify-content: space-between;
   overflow: none;
   width: 600px;
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    margin: .5rem;
+    max-width: 300px;
+    height: auto;
+  }
 }
 
 .nicknames-container {
   height: 200px;
   padding-right: .5rem;
   overflow-y: auto;
+  @media screen and (max-width: 640px) {
+    height: auto;
+    padding: 0;
+  }
 }
 
 .pokemon:hover .nicknames-container::-webkit-scrollbar-thumb {
@@ -85,6 +95,9 @@
   margin: 0 auto;
   text-align: center;
   width: 400px;
+  @media screen and (max-width: 640px) {
+    width: auto;
+  }
 }
 
 .no-nickname h4 {

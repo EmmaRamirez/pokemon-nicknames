@@ -3,6 +3,9 @@
 .main-container {
   margin: .5rem;
   margin-top: 6rem;
+  @media screen and (max-width: 640px) {
+    margin-top: 3rem;
+  }
 }
 
 .app-header {
@@ -19,6 +22,11 @@
   top: 0;
   width: 100%;
   z-index: 100;
+  @media screen and (max-width: 640px) {
+    //flex-direction: column;
+    justify-content: center;
+    height: 2rem;
+  }
 }
 
 .header-logo {
@@ -35,6 +43,9 @@
 .app-header h1 {
   cursor: pointer;
   margin: 0 .25rem;
+  @media screen and (max-width: 640px) {
+    font-size: .9rem;
+  }
 }
 
 .app-header h1 {
@@ -43,6 +54,9 @@
 
 .submit-button {
   background: #222;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }
 
 .submit-button:hover {
@@ -57,4 +71,14 @@ button {
   color: white;
   display: block;
   padding: .25rem;
+}
+
+@media screen and (max-width: 640px) {
+  .app-header img {
+    height: 1rem;
+  }
+
+  .app-header h1 {
+    width: 100%;
+  }
 }

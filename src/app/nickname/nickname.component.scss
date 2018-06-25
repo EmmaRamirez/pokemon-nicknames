@@ -9,6 +9,11 @@
   margin-bottom: .25rem;
   padding: .25rem;
   width: 400px;
+  @media screen and (max-width: 640px) {
+    width: 280px;
+    height: auto;
+  }
+
 }
 
 .nickname-info {
