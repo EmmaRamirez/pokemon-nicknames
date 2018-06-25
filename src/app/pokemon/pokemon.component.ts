@@ -17,6 +17,10 @@ export class PokemonComponent implements OnInit {
     this.isSinglePage = false;
   }
 
+  @Input() goBack() {
+    history.back();
+  }
+
   async getPokemon(id) {
     console.log(id);
     const data = await this.pokemonService.getPokemon(id);

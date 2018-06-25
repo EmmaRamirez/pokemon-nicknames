@@ -1,12 +1,23 @@
 .nickname {
-  border: 1px solid #eee;
+  background: rgba(black, 0.4);
+  border: 1px solid rgba(black, 0.4);
   border-radius: .25rem;
-  box-shadow: 0 0 .25rem #eee;
+  box-shadow: 0 0 .25rem rgba(black, 0.3);
+  color: #fff;
   display: flex;
   height: 80px;
-  margin-bottom: .25rem;
+  margin: .25rem;
   padding: .25rem;
   width: 400px;
+  @media screen and (max-width: 640px) {
+    width: 280px;
+    height: auto;
+  }
+
+}
+
+.single-page .nickname {
+  margin: .5rem;
 }
 
 .nickname-info {
@@ -16,6 +27,10 @@
   align-items: flex-start;
   justify-content: center;
 }
+
+// .nickname-name {
+//   font-weight: bold;
+// }
 
 p {
   margin: 0;
@@ -29,6 +44,8 @@ a {
 
 .nickname-description {
   font-size: 90%;
+  max-width: 24rem;
+  word-wrap: break-word;
 }
 
 .vote-container {
@@ -58,6 +75,6 @@ a {
 
 .tag {
   font-size: 80%;
-  color: #555;
+  color: rgba(white, 0.7);
   margin-right: 0.25rem;
 }

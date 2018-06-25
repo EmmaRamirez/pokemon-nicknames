@@ -1,11 +1,15 @@
-<mat-card class="pokemon" [ngClass]="isSinglePage ? 'single-page' : ''">
+
+<mat-card class="pokemon species-{{ pokemon.species }}" [ngClass]="isSinglePage ? 'single-page' : ''">
+    <div class="go-back-container" *ngIf="isSinglePage">
+        <a class="go-back-link" (click)="goBack()">&#8592; Go Back</a>
+      </div>
     <div class="pokemon-main-info">
       <span class="no-of-nicknames" *ngIf="pokemon.nicknames.length && pokemon.nicknames.length > 1">{{ pokemon.nicknames.length }} nicknames</span>
       <a routerLink="/pokemon/{{ pokemon.species | lowercase }}" class="pokemon-link">{{ pokemon.species }} #{{ pokemon.id }}</a>
       <a routerLink="/pokemon/{{ pokemon.species | lowercase }}">
         <img *ngIf="pokemon.id" src="https://www.serebii.net/sunmoon/pokemon/{{ pokemon.id }}.png" />
       </a>
-      <a routerLink="submit/{{ pokemon.species }}" class="submit-button">Submit A Nickname</a>
+      <a routerLink="/submit/{{ pokemon.species }}" class="submit-button">Submit A Nickname</a>
     </div>
     <div *ngIf="pokemon.nicknames" class="nicknames-container">
       <div *ngIf="pokemon.nicknames.length; else elseBlock" class="nicknames-container-inner">

@@ -1,14 +1,10 @@
 import json
-import status
-from pymongo import MongoClient, ReturnDocument
 import logging
 import os
+from pymongo import MongoClient, ReturnDocument
 from bson.json_util import dumps
 from datetime import date
 from tornado import web, escape, ioloop, httpclient, gen
-from pokemon import Pokemon
-from nickname import Nickname
-import os
 from dotenv import load_dotenv
 from os.path import join, dirname
 
@@ -28,7 +24,6 @@ connectionstring = 'mongodb://%s:%s@%s:%s/pokemon-nicknames' % (DB_USER, DB_PASS
 logger.info(connectionstring)
 
 client = MongoClient(connectionstring)
-print(client)
 db = client['pokemon-nicknames']
 
 class MainHandler(web.RequestHandler):
@@ -82,9 +77,7 @@ class NicknameHandler(web.RequestHandler):
           'upvotes': 1,
           'downvotes': 0
         }
-
         names = []
-
         document = db.pokemon.find_one({ 'species': species })
         for n in document['nicknames']:
             names.append(n['name'])
@@ -94,7 +87,6 @@ class NicknameHandler(web.RequestHandler):
                     'error': 'Error: Name already exists!'
                 }
             })
-            # raise Exception('That nickname already exists!')
         else:
             db.pokemon.update_one({
                 'species': species
@@ -115,6 +107,17 @@ def is_number(s):
   except ValueError:
     return False
 
+class SearchHandler(web.RequestHandler):
+    def set_default_headers(self):
+        logger.info('Setting headers...')
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+
+    def get(self, slug=None):
+        species = self.get_argument("species")
+        document = db.pokemon.find({ 'species': { '$regex': '(^' + species + ')' }}).sort("id")
+        self.write(dumps(document))
 
 class PokemonHandler(web.RequestHandler):
     def set_default_headers(self):
@@ -125,14 +128,6 @@ class PokemonHandler(web.RequestHandler):
 
     def find_one_species(self, species):
         document = db.pokemon.find_one({ 'species': species })
-        return document
-
-    def find_one_id(self, id):
-        document = db.pokemon.find_one({ 'id': id })
-        return document
-
-    def find_30(self):
-        document = db.pokemon.find().sort("id").limit(30)
         return document
 
     def post(self):
@@ -147,7 +142,7 @@ class PokemonHandler(web.RequestHandler):
             entry = slug.capitalize()
             d = self.find_one_species(species=entry)
         else:
-            d = self.find_30()
+            self.write({ 'error': 'Could not find matching species' })
         self.write(dumps(d))
 
 class PokemonPageHandler(web.RequestHandler):
@@ -174,7 +169,8 @@ class PokemonPageHandler(web.RequestHandler):
 def make_app():
     return web.Application([
         (r"/", MainHandler),
-        (r"/pokemon", PokemonHandler),
+        (r"/pokemon/search", SearchHandler),
+        # (r"/pokemon", PokemonHandler),
         (r"/pokemon/([^/]+)", PokemonHandler),
         (r"/pokemon/page/([^/]+)", PokemonPageHandler),
         (r"/vote", VoteHandler),
