@@ -1,14 +1,10 @@
 import json
-import status
-from pymongo import MongoClient, ReturnDocument
 import logging
 import os
+from pymongo import MongoClient, ReturnDocument
 from bson.json_util import dumps
 from datetime import date
 from tornado import web, escape, ioloop, httpclient, gen
-from pokemon import Pokemon
-from nickname import Nickname
-import os
 from dotenv import load_dotenv
 from os.path import join, dirname
 
