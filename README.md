@@ -81,7 +81,7 @@ Returns:
 ```typescript
 {
   result: {
-    document: mongoDB document of pokemon,
+    document: Pokemon,
     nickname: {
       name: string;
       description: string;
