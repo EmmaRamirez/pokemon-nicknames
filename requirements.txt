@@ -35,6 +35,6 @@ python-dotenv==0.8.2
 six==1.10.0
 status==0.2.5
 tornado==5.0.2
-urllib3==1.22
+urllib3==1.26.5
 uvloop==0.10.1
 visitor==0.1.3
